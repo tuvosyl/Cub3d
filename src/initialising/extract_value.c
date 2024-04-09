@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:37 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/09 17:53:15 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/10 01:46:53 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,55 +32,57 @@ char *extract_texture_path(char *str)
 	
 }
 
-t_4int extract_RGB(char *str, t_4int return_value)
+char *extract_RGB_2(char *str, int *i, int *which_value)
 {
-	int i;
-	int counter;
-	int which_value;
-	int counter_temp;
-	char	*temp;
+    int counter;
+    int counter_temp;
+    char *temp;
 
-	i = 3;
 	counter = 0;
 	counter_temp = 0;
-	which_value = 0;
-	while(str[i] && str[i] != '\n' && which_value != 3)
-	{
-		if(ft_isdigit(str[i]) == 1)
-		{
-			while(ft_isdigit(str[i]) == 1 && str[i])
-			{
-				i++;
-				counter++;
-			}
-			counter++;
-			temp = malloc(sizeof(char) * counter + 1);
-			i -= counter;
-			while(counter_temp != counter)
-			{
-				temp[counter_temp] = str[i + counter_temp];
-				counter_temp++;
-			}
-			temp[counter_temp] = '\0';
-			i += counter + 1;
-			ft_printf("oui = %s\n", temp);
-			counter = 0;
-			counter_temp = 0;
-			if (which_value == 0)
-				return_value.r = ft_atoi(temp);
-			if (which_value == 1)
-				return_value.g = ft_atoi(temp);
-			if (which_value == 2)
-				return_value.b = ft_atoi(temp);
-			if (which_value == 3)
-				return_value.l = ft_atoi(temp);
-			free(temp);
-			which_value++;
-		}
-		i++;
-	}
-	return (return_value);
-		
+    while(ft_isdigit(str[*i]) == 1 && str[*i] && str[*i] != ',')
+    {
+        (*i)++;
+        counter++;
+    }
+    temp = malloc(sizeof(char) * counter + 1);
+    *i -= counter;
+    while(counter_temp != counter)
+    {
+        temp[counter_temp] = str[*i + counter_temp];
+        counter_temp++;
+    }
+    temp[counter_temp] = '\0';
+    *i += counter;
+    (*which_value)++;
+    return temp;
+}
+
+t_4int extract_RGB(char *str, t_4int return_value)
+{
+    int i = 0;
+    int which_value = 0;
+    char *temp;
+
+    while(str[i] && str[i] != '\n' && which_value != 4)
+    {
+        if(ft_isdigit(str[i]) == 1)
+        {
+            temp = extract_RGB_2(str, &i, &which_value);
+            if (which_value == 1)
+                return_value.r = ft_atoi(temp);
+            else if (which_value == 2)
+                return_value.g = ft_atoi(temp);
+            else if (which_value == 3)
+                return_value.b = ft_atoi(temp);
+            else if (which_value == 4)
+                return_value.l = ft_atoi(temp);
+            free(temp);
+        }
+        else
+            i++;
+    }
+    return (return_value);
 }
 
 void	extract_value_2(t_data *data, char *str)

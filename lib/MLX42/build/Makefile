@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dailywind/Cub3d/lib/MLX42
+CMAKE_SOURCE_DIR = /home/val/42/Cub3d/lib/MLX42
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dailywind/Cub3d/lib/MLX42/build
+CMAKE_BINARY_DIR = /home/val/42/Cub3d/lib/MLX42/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dailywind/Cub3d/lib/MLX42/build/CMakeFiles /home/dailywind/Cub3d/lib/MLX42/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/val/42/Cub3d/lib/MLX42/build/CMakeFiles /home/val/42/Cub3d/lib/MLX42/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dailywind/Cub3d/lib/MLX42/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/val/42/Cub3d/lib/MLX42/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -173,6 +173,45 @@ mlx42: cmake_check_build_system
 mlx42/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlx42.dir/build.make CMakeFiles/mlx42.dir/build
 .PHONY : mlx42/fast
+
+#=============================================================================
+# Target rules for targets named uninstall
+
+# Build rule for target.
+uninstall: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
+.PHONY : uninstall
+
+# fast build rule for target.
+uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/glfw-build/CMakeFiles/uninstall.dir/build.make _deps/glfw-build/CMakeFiles/uninstall.dir/build
+.PHONY : uninstall/fast
+
+#=============================================================================
+# Target rules for targets named update_mappings
+
+# Build rule for target.
+update_mappings: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 update_mappings
+.PHONY : update_mappings
+
+# fast build rule for target.
+update_mappings/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build.make _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build
+.PHONY : update_mappings/fast
+
+#=============================================================================
+# Target rules for targets named glfw
+
+# Build rule for target.
+glfw: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glfw
+.PHONY : glfw
+
+# fast build rule for target.
+glfw/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/glfw-build/src/CMakeFiles/glfw.dir/build.make _deps/glfw-build/src/CMakeFiles/glfw.dir/build
+.PHONY : glfw/fast
 
 lib/glad/glad.o: lib/glad/glad.c.o
 .PHONY : lib/glad/glad.o
@@ -714,6 +753,9 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... uninstall"
+	@echo "... update_mappings"
+	@echo "... glfw"
 	@echo "... mlx42"
 	@echo "... lib/glad/glad.o"
 	@echo "... lib/glad/glad.i"

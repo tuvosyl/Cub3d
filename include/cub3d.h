@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/09 17:27:33 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/10 01:50:03 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@
 /*###########################################################################*/
 /*                                Structures                                 */
 /*###########################################################################*/
-// Stock 3 integers, can be used for anything
 typedef struct s_4int
 {
 	int		r;
@@ -58,7 +57,7 @@ typedef struct s_4int
 	int		l;
 }	t_4int;
 
-typedef struct s_map // tu me vire ça
+typedef struct s_map // non
 {
 	char 		**map;
 	char		*map_path;
@@ -81,7 +80,7 @@ typedef struct s_image
 	mlx_image_t	*east_image;
 }	t_image;
 
-typedef struct s_texture_path // ça aussi
+typedef struct s_texture_path // ratio
 {
 	char	*north_texture;
 	char	*south_texture;

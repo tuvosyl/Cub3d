@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checking_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:12:54 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/09 17:05:54 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/10 01:37:54 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,7 @@ int checking_init(t_data *data, int argc, char **argv)
 	(void)argc;
 	read_lenght(data);
 	extract_value(data);
-	// ft_printf("%s\n", data.texture_path.east_texture);
-	// ft_printf("%s\n", data.texture_path.north_texture);
-	// ft_printf("%s\n", data.texture_path.south_texture);
-	// ft_printf("%s\n", data.texture_path.west_texture);
-	// ft_printf("%d,%d,%d\n", data.ground_color.r, data.ground_color.g, data.ground_color.b);
-	// ft_printf("%d,%d,%d\n", data.ceilling_color.r, data.ceilling_color.g, data.ceilling_color.b);
+	ft_printf("floor_color = %d,%d,%d,%d\n", data->ground_color.r, data->ground_color.g, data->ground_color.b, data->ground_color.l);
+	ft_printf("ceiling_color = %d,%d,%d,%d\n", data->ceilling_color.r, data->ceilling_color.g, data->ceilling_color.b, data->ceilling_color.l);
 	return (0);
 }

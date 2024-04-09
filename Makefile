@@ -7,7 +7,7 @@ FT			= libft
 LIBFT		= $(FT)/libft.a
 DEBUG		= 0
 
-SRC		=	$(wildcard src/*.c)
+SRC		=	$(wildcard src/*.c) $(wildcard src/parsing/*.c) $(wildcard src/checking/*.c)
 OBJ		= $(SRC:.c=.o)
 
 all:

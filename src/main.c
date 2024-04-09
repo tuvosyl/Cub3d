@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:04:06 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/09 15:07:55 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/09 15:22:12 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@ int main(int argc, char **argv)
 {
 	(void)argc;
 	(void)argv;
-	ft_printf("oui\n");
 	return (0);
 }

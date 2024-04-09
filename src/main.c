@@ -16,13 +16,11 @@ int main(int argc, char **argv)
 {
 	t_data data;
 
-	
-	checking_init(&data, argc, argv);
-	ft_printf("%s\n", data.texture_path.east_texture);
-	ft_printf("%s\n", data.texture_path.north_texture);
-	ft_printf("%s\n", data.texture_path.south_texture);
-	ft_printf("%s\n", data.texture_path.west_texture);
-	ft_printf("%d,%d,%d\n", data.ground_color.r, data.ground_color.g, data.ground_color.b);
-	ft_printf("%d,%d,%d\n", data.ceilling_color.r, data.ceilling_color.g, data.ceilling_color.b);
+	(void)argc;
+	(void)argv;
+	(void)data;
+	//checking_init(&data, argc, argv);
+	printf("BONUS = %d\n", BONUS);
+	printf("DEBUG = %d\n", DEBUG);
 	return (0);
 }

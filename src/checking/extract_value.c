@@ -88,6 +88,7 @@ void	extract_value_2(t_data *data, char *str)
 	int i;
 
 	i = 0;
+	(void)i;
 	if(str[0] == 'N' && str[1] == 'O')
 		data->texture_path.north_texture = extract_texture_path(str);
 	if(str[0] == 'S' && str[1] == 'O')

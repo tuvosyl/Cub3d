@@ -1,7 +1,0 @@
-/home/vsoltys/Documents/so long/final/minilibx/CMakeFiles/install/strip.dir
-/home/vsoltys/Documents/so long/final/minilibx/CMakeFiles/install.dir
-/home/vsoltys/Documents/so long/final/minilibx/CMakeFiles/list_install_components.dir
-/home/vsoltys/Documents/so long/final/minilibx/CMakeFiles/rebuild_cache.dir
-/home/vsoltys/Documents/so long/final/minilibx/CMakeFiles/edit_cache.dir
-/home/vsoltys/Documents/so long/final/minilibx/CMakeFiles/install/local.dir
-/home/vsoltys/Documents/so long/final/minilibx/CMakeFiles/mlx42.dir

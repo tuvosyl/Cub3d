@@ -16,28 +16,35 @@
 /*###########################################################################*/
 /*                                  Defines                                  */
 /*###########################################################################*/
+// Program settings define
+# ifdef DEBUG
+#  define DEBUG 1
+# else
+#  define DEBUG 0
+# endif
+
+# ifdef BONUS
+#  define BONUS 1
+# else
+#  define BONUS 0
+# endif
 
 // Custom defines
 # define WHITESPACES "\t\n\v\f\r "
+
 /*###########################################################################*/
 /*                                 Includes                                  */
 /*###########################################################################*/
-# include "../libft/libft.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "../lib/libft/libft.h"
 # include <stdbool.h>
 # include <stdint.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <signal.h>
 # include <string.h>
 # include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
-# include <dirent.h>
 # include <unistd.h>
-# include "../minilibx/mlx42.h"
+# include <math.h>
 
 /*###########################################################################*/
 /*                                Structures                                 */
@@ -51,7 +58,7 @@ typedef struct s_4int
 	int		l;
 }	t_4int;
 
-typedef struct s_map
+typedef struct s_map // tu me vire ça
 {
 	char 		**map;
 	char		*map_path;
@@ -74,7 +81,7 @@ typedef struct s_image
 	mlx_image_t	*east_image;
 }	t_image;
 
-typedef struct s_texture_path
+typedef struct s_texture_path // ça aussi
 {
 	char	*north_texture;
 	char	*south_texture;
@@ -82,8 +89,10 @@ typedef struct s_texture_path
 	char	*east_texture;
 } t_texture_path;
 
+// Main Structure
 typedef struct s_data
 {
+	//char 		**map;
 	mlx_t		*mlx;
 	t_map		map;
 	t_texture 	texture;
@@ -97,7 +106,7 @@ typedef struct s_data
 /*                                 Fonctions                                 */
 /*###########################################################################*/
 
-int	checking_init(t_data *data, int argc, char **argv);
-int extract_value(t_data *data);
+int				checking_init(t_data *data, int argc, char **argv);
+int 			extract_value(t_data *data);
 
 #endif

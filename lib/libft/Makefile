@@ -58,7 +58,8 @@ LIBC =  ft_lstmap.c \
 		printf.c \
 		exep1.c \
 		exepitoa.c \
-		exepx.c
+		exepx.c \
+		free_split.c 
 
 SRCS = ${LIBC}
 SRCSALL = ${LIBC}

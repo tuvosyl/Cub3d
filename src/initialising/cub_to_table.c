@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checking_init.c                                    :+:      :+:    :+:   */
+/*   cub_to_table.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:12:54 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/10 01:37:54 by val              ###   ########.fr       */
+/*   Updated: 2024/04/10 18:01:46 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,14 @@ void	read_lenght(t_data *data)
 int checking_init(t_data *data, int argc, char **argv)
 {
 	data->map.map_path = argv[1];
-	(void)argc;
+	if (argc != 2)
+	{
+		ft_printf("Error\nWrong number of arguments\n");
+		exit (1);
+	}
 	read_lenght(data);
 	extract_value(data);
-	ft_printf("floor_color = %d,%d,%d,%d\n", data->ground_color.r, data->ground_color.g, data->ground_color.b, data->ground_color.l);
-	ft_printf("ceiling_color = %d,%d,%d,%d\n", data->ceilling_color.r, data->ceilling_color.g, data->ceilling_color.b, data->ceilling_color.l);
+	table_to_map(data); 
+	
 	return (0);
 }

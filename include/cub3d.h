@@ -6,7 +6,7 @@
 /*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/10 01:50:03 by val              ###   ########.fr       */
+/*   Updated: 2024/04/10 17:23:32 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_map // non
 {
 	char 		**map;
 	char		*map_path;
+	char		player_start;
 	int			fd;
 }	t_map;
 
@@ -107,5 +108,6 @@ typedef struct s_data
 
 int				checking_init(t_data *data, int argc, char **argv);
 int 			extract_value(t_data *data);
+void			table_to_map(t_data *data);
 
 #endif

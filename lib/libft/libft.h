@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 12:40:44 by blebas            #+#    #+#             */
-/*   Updated: 2024/03/29 12:10:09 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:22:08 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_list
 }			t_list;
 
 char	*del_char(char *str, char *set);
+void	free_split(char **table);
 bool	is_env(char c);
 size_t	ft_strncpy(char *dst, const char *src, size_t size);
 bool	is_quote(char c);

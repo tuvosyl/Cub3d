@@ -28,8 +28,8 @@ all:
 	@make -s LIBFT
 	@make -s MLX42
 	@make -s $(NAME)
-	@if [ $(DEBUG) -eq 1 ]; then printf "\033[1;36m\n🚧DEBUG MODE🚧\n\e[0m"; fi
-	@if [ $(BONUS) -eq 1 ]; then printf "\033[1;36m\n🌟BONUS MODE🌟\n\e[0m"; fi
+	@if [ $(DEBUG) -eq 1 ]; then printf "\033[1;31m\n > 🚧DEBUG MODE🚧\n\e[0m"; fi
+	@if [ $(BONUS) -eq 1 ]; then printf "\033[1;31m\n > 🌟BONUS MODE🌟\n\e[0m"; fi
 	@printf "\033[1;36m\nDONE !\n\e[0m"
 
 $(NAME): $(OBJ)

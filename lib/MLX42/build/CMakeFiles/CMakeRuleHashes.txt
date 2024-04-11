@@ -1,5 +1,3 @@
 # Hashes of file build rules.
-a7578ffc1b7dbb5d1981b90848dc0a47 _deps/glfw-build/CMakeFiles/uninstall
-f57bba776109f9ff4241d865054a6ead _deps/glfw-build/src/CMakeFiles/update_mappings
-9fe29c90251a4dc0b59c00f144c2ac12 mlx_frag_shader.c
-98815c00112af15e4d8a986b46d2d1ca mlx_vert_shader.c
+0f9119198e3cdb4c77c1f0858b2fd253 mlx_frag_shader.c
+af55307490f3a8ca3edae1ca580fe1e9 mlx_vert_shader.c

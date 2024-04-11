@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:04:06 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/11 02:38:01 by val              ###   ########.fr       */
+/*   Updated: 2024/04/11 11:32:13 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,11 @@ void printf_debug(t_data *data)
 }
 int main(int argc, char **argv)
 {
-	printf("BONUS = %d\n", BONUS);
-	printf("DEBUG = %d\n", DEBUG);
 	t_data data;
 
 	checking_init(&data, argc, argv);
-	if(DEBUG)
+	if (DEBUG)
 		printf_debug(&data);
+	create_collision_map(&data);
 	return (0);
 }

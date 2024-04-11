@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/10 17:23:32 by val              ###   ########.fr       */
+/*   Updated: 2024/04/11 11:37:03 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 /*                                 Includes                                  */
 /*###########################################################################*/
 # include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "../lib/DailyLib/dailylib.h"
 # include "../lib/libft/libft.h"
 # include <stdbool.h>
 # include <stdint.h>
@@ -49,17 +50,12 @@
 /*###########################################################################*/
 /*                                Structures                                 */
 /*###########################################################################*/
-typedef struct s_4int
-{
-	int		r;
-	int		g;
-	int		b;
-	int		l;
-}	t_4int;
 
-typedef struct s_map // non
+typedef struct s_map // ok pour celle la
 {
 	char 		**map;
+	t_2int		map_size;
+	t_2int		*collision_map;
 	char		*map_path;
 	char		player_start;
 	int			fd;
@@ -81,7 +77,7 @@ typedef struct s_image
 	mlx_image_t	*east_image;
 }	t_image;
 
-typedef struct s_texture_path // ratio
+typedef struct s_texture_path // mais celle la sert vraiment a rien
 {
 	char	*north_texture;
 	char	*south_texture;
@@ -90,16 +86,18 @@ typedef struct s_texture_path // ratio
 } t_texture_path;
 
 // Main Structure
+// Walls are cube shaped so we only need one point to represent it
+// Walls have a size of 1x1
 typedef struct s_data
 {
-	//char 		**map;
-	mlx_t		*mlx;
-	t_map		map;
-	t_texture 	texture;
-	t_image 	image;
+	mlx_t			*mlx;
+	t_map			map;
+	t_texture 		texture;
+	t_image 		image;
 	t_texture_path	texture_path;
-	t_4int 		ground_color;
-	t_4int		ceilling_color;
+	t_4int 			ground_color;
+	t_4int			ceilling_color;
+	t_2int			player_pos;
 }	t_data;
 
 /*###########################################################################*/
@@ -109,5 +107,8 @@ typedef struct s_data
 int				checking_init(t_data *data, int argc, char **argv);
 int 			extract_value(t_data *data);
 void			table_to_map(t_data *data);
+void			create_collision_map(t_data *data);
+bool			check_collision(t_data *data, t_2int pos);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:04:06 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/10 18:33:35 by val              ###   ########.fr       */
+/*   Updated: 2024/04/11 02:38:01 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ void printf_debug(t_data *data)
 	int i;
 
 	i = 0;
-	ft_printf("map = \n");
+	ft_printf("\033[0;35mmap :\033[0m\n");
 	while(data->map.map[i])
 	{
 		ft_printf("\t\t%s\n", data->map.map[i]);
 		i++;
 	}
-	ft_printf("map.player_start = %c\n", data->map.player_start);
-	ft_printf("map_path : \t\t\t%s\n", data->map.map_path);
-	ft_printf("texture_path_north :\t%s\n", data->texture_path.north_texture);
-	ft_printf("texture_path_south :\t%s\n", data->texture_path.south_texture);
-	ft_printf("texture_path_west :\t%s\n", data->texture_path.west_texture);
-	ft_printf("texture_path_east :\t%s\n", data->texture_path.east_texture);
-	ft_printf("floor_color :\t%d,%d,%d,%d\n", data->ground_color.r, data->ground_color.g, data->ground_color.b, data->ground_color.l);
-	ft_printf("ceiling_color :\t%d,%d,%d,%d\n", data->ceilling_color.r, data->ceilling_color.g, data->ceilling_color.b, data->ceilling_color.l);
+	ft_printf("\033[0;35mmap.player_start : \033[0m%c\n\n", data->map.player_start);
+	ft_printf("\033[0;35mmap_path :\033[0m\t\t%s\n\n", data->map.map_path);
+	ft_printf("\033[0;35mtexture_path_north :\033[0m\t%s\n", data->texture_path.north_texture);
+	ft_printf("\033[0;35mtexture_path_south :\033[0m\t%s\n", data->texture_path.south_texture);
+	ft_printf("\033[0;35mtexture_path_west  :\033[0m\t%s\n", data->texture_path.west_texture);
+	ft_printf("\033[0;35mtexture_path_east  :\033[0m\t%s\n\n", data->texture_path.east_texture);
+	ft_printf("\033[0;35mfloor_color :\033[0m\t%d,%d,%d,%d\n", data->ground_color.r, data->ground_color.g, data->ground_color.b, data->ground_color.l);
+	ft_printf("\033[0;35mceiling_color :\033[0m\t%d,%d,%d,%d\n", data->ceilling_color.r, data->ceilling_color.g, data->ceilling_color.b, data->ceilling_color.l);
 }
 int main(int argc, char **argv)
 {

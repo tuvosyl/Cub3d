@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:04:06 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/11 11:32:13 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:23:38 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int main(int argc, char **argv)
 	checking_init(&data, argc, argv);
 	if (DEBUG)
 		printf_debug(&data);
-	create_collision_map(&data);
+	// create_collision_map(&data);
 	return (0);
 }

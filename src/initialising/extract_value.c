@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:37 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/10 18:30:08 by val              ###   ########.fr       */
+/*   Updated: 2024/04/11 13:18:11 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_4int extract_RGB(char *str, t_4int return_value)
     int which_value = 0;
     char *temp;
 
-    while(str[i] && str[i] != '\n' && which_value != 4)
+    while(str[i] && str[i] != '\n' && which_value != 3)
     {
         if(ft_isdigit(str[i]) == 1)
         {
@@ -75,8 +75,6 @@ t_4int extract_RGB(char *str, t_4int return_value)
                 return_value.g = ft_atoi(temp);
             else if (which_value == 3)
                 return_value.b = ft_atoi(temp);
-            else if (which_value == 4)
-                return_value.l = ft_atoi(temp);
             free(temp);
         }
         else

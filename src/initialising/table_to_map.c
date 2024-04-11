@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table_to_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/04/11 02:33:11 by val              ###   ########.fr       */
+/*   Updated: 2024/04/11 13:29:29 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	table_to_map(t_data *data)
         {
             if (data->map.map[i][j] == '1' || data->map.map[i][j] == ' ' || data->map.map[i][j] == '0' || data->map.map[i][j] == '\n')
 				j++;
-			else if ((data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' || data->map.map[i][j] == 'W' || data->map.map[i][j] == 'E') && !data->map.player_start)
+			else if ((data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' || data->map.map[i][j] == 'W' || data->map.map[i][j] == 'E'))
 			{
 				data->map.player_start = data->map.map[i][j];
 				j++;

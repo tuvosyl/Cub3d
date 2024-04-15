@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:04:06 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/11 13:23:38 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/15 17:27:37 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int main(int argc, char **argv)
 	t_data data;
 
 	checking_init(&data, argc, argv);
+	if (parsing(&data))
+		return (1);	
 	if (DEBUG)
 		printf_debug(&data);
 	// create_collision_map(&data);

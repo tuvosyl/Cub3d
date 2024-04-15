@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/11 11:37:03 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:51:29 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_map // ok pour celle la
 	t_2int		*collision_map;
 	char		*map_path;
 	char		player_start;
+	t_2int		player_pos;		
 	int			fd;
 }	t_map;
 
@@ -109,6 +110,10 @@ int 			extract_value(t_data *data);
 void			table_to_map(t_data *data);
 void			create_collision_map(t_data *data);
 bool			check_collision(t_data *data, t_2int pos);
+int				parsing(t_data *data);
+void			load_png(t_data *data);
+void			texture_to_image(t_data *data);
+void			error(void);
 
 
 #endif

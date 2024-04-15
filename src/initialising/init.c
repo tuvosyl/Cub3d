@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_to_table.c                                     :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:12:54 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/11 13:23:55 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/15 17:56:11 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int checking_init(t_data *data, int argc, char **argv)
 	}
 	read_lenght(data);
 	extract_value(data);
-	table_to_map(data); 
-	
+	table_to_map(data);
+	// load_png(data);
+	// texture_to_image(data);
 	return (0);
 }

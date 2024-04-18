@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table_to_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/04/18 09:53:34 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:36:04 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ void	table_to_map(t_data *data)
 	l = 0;
 	while(data->map.map[i])
         i++;
-    i--;
+	i -= 2;
 	k = i;
 	
     while(i != 0)
     {
+		if (data->map.map[i][j] == '\n')
+			return (table_to_map_2(data, k, i + 1));
         while(data->map.map[i][j])
         {
             if (data->map.map[i][j] == '1' || data->map.map[i][j] == ' ' || data->map.map[i][j] == '0' || data->map.map[i][j] == '\n')
@@ -59,14 +61,11 @@ void	table_to_map(t_data *data)
 				j++;
 			}
 			else
-			{
-				table_to_map_2(data, k, i + 1);
-				return ;
-			}
+				return (table_to_map_2(data, k, i + 1));
         }
+		j = 0;
 		if (l != 0)
 			break ;
-        j = 0;
         i--;
     }
 	exit(1) ;

@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:37 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/11 13:18:11 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/18 13:45:48 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char *extract_RGB_2(char *str, int *i, int *which_value)
     return temp;
 }
 
-t_4int extract_RGB(char *str, t_4int return_value)
+t_3RGB extract_RGB(char *str, t_3RGB return_value)
 {
     int i = 0;
     int which_value = 0;

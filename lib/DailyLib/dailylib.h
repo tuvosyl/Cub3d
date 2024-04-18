@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dailylib.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:59:32 by mgallais          #+#    #+#             */
-/*   Updated: 2024/04/11 10:05:44 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:44:13 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,12 @@ typedef struct s_4int
 	int		b;
 	int		l;
 }	t_4int;
+
+typedef struct s_RGB
+{
+	int		r;
+	int		g;
+	int		b;
+}	t_3RGB;
 
 #endif

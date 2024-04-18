@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 09:59:51 by mgallais          #+#    #+#             */
-/*   Updated: 2024/04/18 10:09:01 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:45:18 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void printf_debug(t_data *data)
 	ft_printf("\033[0;35mtexture_path_south :\033[0m\t%s\n", data->texture_path.south_texture);
 	ft_printf("\033[0;35mtexture_path_west  :\033[0m\t%s\n", data->texture_path.west_texture);
 	ft_printf("\033[0;35mtexture_path_east  :\033[0m\t%s\n\n", data->texture_path.east_texture);
-	ft_printf("\033[0;35mfloor_color :\033[0m\t%d,%d,%d,%d\n", data->ground_color.r, data->ground_color.g, data->ground_color.b, data->ground_color.l);
-	ft_printf("\033[0;35mceiling_color :\033[0m\t%d,%d,%d,%d\n", data->ceilling_color.r, data->ceilling_color.g, data->ceilling_color.b, data->ceilling_color.l);
+	ft_printf("\033[0;35mfloor_color :\033[0m\t%d,%d,%d\n", data->ground_color.r, data->ground_color.g, data->ground_color.b);
+	ft_printf("\033[0;35mceiling_color :\033[0m\t%d,%d,%d\n", data->ceilling_color.r, data->ceilling_color.g, data->ceilling_color.b);
 	printf_collision(data);
 }

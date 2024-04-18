@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/18 10:00:58 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:44:36 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ typedef struct s_data
 	t_texture 		texture;
 	t_image 		image;
 	t_texture_path	texture_path;
-	t_4int 			ground_color;
-	t_4int			ceilling_color;
+	t_3RGB 			ground_color;
+	t_3RGB			ceilling_color;
 	t_2int			player_pos;
 }	t_data;
 

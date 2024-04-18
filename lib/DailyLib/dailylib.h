@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dailylib.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:59:32 by mgallais          #+#    #+#             */
-/*   Updated: 2024/04/18 13:44:13 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/18 15:38:24 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_3int
 	int		z;
 }	t_3int;
 
-// Structure for 4 integers (red, green, blue, light)
+// Structure for 4 integers
 typedef struct s_4int
 {
 	int		r;
@@ -61,11 +61,28 @@ typedef struct s_4int
 	int		l;
 }	t_4int;
 
-typedef struct s_RGB
+// Structure for 2 floats
+typedef struct s_2float
 {
-	int		r;
-	int		g;
-	int		b;
-}	t_3RGB;
+	float	x;
+	float	y;
+}	t_2float;
+
+// Structure for 3 floats
+typedef struct s_3float
+{
+	float	x;
+	float	y;
+	float	z;
+}	t_3float;
+
+// Structure for 4 floats
+typedef struct s_4float
+{
+	float	x;
+	float	y;
+	float	z;
+	float	w;
+}	t_4float;
 
 #endif

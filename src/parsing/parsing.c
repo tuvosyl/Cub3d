@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:06:15 by mgallais          #+#    #+#             */
-/*   Updated: 2024/04/18 15:29:47 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:45:48 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static void	get_color(t_data *data, char *str, int type)
 {
@@ -85,7 +85,7 @@ static void	extract_value(t_data *data, int map_fd)
 		if (!str)
 			break ;
 		check_line(data, str);
-		deallocate(str, &data->garbage);
+		deallocate(str, data->garbage);
 	}
 }
 
@@ -100,5 +100,4 @@ void	parsing(t_data *data, int argc, char **argv)
 		return (ft_printf("Error\n\tCan't open the map file\n"), exit (1));
 	extract_value(data, map_fd);
 	close(map_fd);
-	return (0);
 }

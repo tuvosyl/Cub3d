@@ -6,33 +6,11 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 09:59:51 by mgallais          #+#    #+#             */
-/*   Updated: 2024/04/18 10:09:01 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/18 10:41:10 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-static void	printf_collision(t_data *data)
-{
-	int i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	ft_printf("\033[0;35mcollision_map :\033[0m\n");
-	while(data->map.map[i])
-	{
-		while (data->map.map[i][j])
-		{
-			if (check_collision(data, (t_2int){i, j}))
-				ft_printf("1");
-			else
-				ft_printf("0");
-			j++;
-		}
-		i++;
-	}
-}
 
 void printf_debug(t_data *data)
 {
@@ -53,5 +31,4 @@ void printf_debug(t_data *data)
 	ft_printf("\033[0;35mtexture_path_east  :\033[0m\t%s\n\n", data->texture_path.east_texture);
 	ft_printf("\033[0;35mfloor_color :\033[0m\t%d,%d,%d,%d\n", data->ground_color.r, data->ground_color.g, data->ground_color.b, data->ground_color.l);
 	ft_printf("\033[0;35mceiling_color :\033[0m\t%d,%d,%d,%d\n", data->ceilling_color.r, data->ceilling_color.g, data->ceilling_color.b, data->ceilling_color.l);
-	printf_collision(data);
 }

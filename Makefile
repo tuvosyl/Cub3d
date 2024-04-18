@@ -67,6 +67,7 @@ clean:
 	@$(RM) $(OBJ)
 	@make -s clean -C ./lib/libft
 	@make -s clean -C ./lib/GC
+	@printf "\033[1;31m- [GC] Object files deleted\n\033[0m"
 	@printf "\033[1;31m- Object files deleted\n\033[0m"
 
 fclean: clean

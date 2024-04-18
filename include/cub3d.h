@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/18 10:00:58 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:02:24 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@
 /*                                 Includes                                  */
 /*###########################################################################*/
 # include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "../lib/GC/garbage_collector.h"
 # include "../lib/DailyLib/dailylib.h"
 # include "../lib/libft/libft.h"
+# include <stdlib.h>
 # include <stdbool.h>
 # include <stdint.h>
 # include <string.h>

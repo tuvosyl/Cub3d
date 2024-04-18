@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/18 15:35:57 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:08:34 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@
 typedef struct s_map
 {
 	char 		**map;
+	int			fd;
+	char		*map_path;
 	t_2float	*collision_map;
 	t_2int		map_size;
 	char		player_start;
@@ -71,13 +73,29 @@ typedef struct s_map
 
 typedef struct s_textures
 {
+	mlx_texture_t	*north_texture;
+	mlx_texture_t	*south_texture;
+	mlx_texture_t	*west_texture;
+	mlx_texture_t	*east_texture;
+	t_3RGB		floor_color;
+	t_3RGB		ceiling_color;
+}	t_textures;
+
+typedef struct s_image
+{
 	mlx_image_t	*north_image;
 	mlx_image_t	*south_image;
 	mlx_image_t	*west_image;
 	mlx_image_t	*east_image;
-	t_3int		floor_color;
-	t_3int		ceiling_color;
-}	t_textures;
+}	t_image;
+
+typedef struct s_texture_path
+{
+	char	*north_texture;
+	char	*south_texture;
+	char	*west_texture;
+	char	*east_texture;
+} t_texture_path;
 
 // Main Structure
 typedef struct s_data
@@ -86,6 +104,8 @@ typedef struct s_data
 	t_garb			*garbage;
 	t_map			map;
 	t_textures 		textures;
+	t_texture_path	texture_path;
+	t_image			images;
 	t_2int			player_pos;
 }	t_data;
 
@@ -93,16 +113,12 @@ typedef struct s_data
 /*                                 Fonctions                                 */
 /*###########################################################################*/
 
-// int				checking_init(t_data *data, int argc, char **argv);
-// int 			extract_value(t_data *data);
-// void			table_to_map(t_data *data);
-// void			create_collision_map(t_data *data);
-// bool			check_collision(t_data *data, t_2int pos);
-// int				parsing(t_data *data);
-// void			load_png(t_data *data);
-// void			texture_to_image(t_data *data);
-// void			error(void);
-// void 			printf_debug(t_data *data);
+void	parsing(t_data *data, int argc, char **argv);
+void	printf_debug(t_data *data);
+void	read_lenght(t_data *data);
+void	table_to_map(t_data *data);
+void load_png(t_data *data);
+void	texture_to_image(t_data *data);
 
 
 #endif

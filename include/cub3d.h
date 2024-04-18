@@ -6,7 +6,11 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/18 13:44:36 by vsoltys          ###   ########.fr       */
+=======
+/*   Updated: 2024/04/18 11:02:24 by mgallais         ###   ########.fr       */
+>>>>>>> ec4cc34193ab33f5d09556f168b5d9bb1c42c557
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +40,10 @@
 /*                                 Includes                                  */
 /*###########################################################################*/
 # include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "../lib/GC/garbage_collector.h"
 # include "../lib/DailyLib/dailylib.h"
 # include "../lib/libft/libft.h"
+# include <stdlib.h>
 # include <stdbool.h>
 # include <stdint.h>
 # include <string.h>

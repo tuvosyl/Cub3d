@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:12:54 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/18 14:33:10 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/19 16:05:53 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 
 void	read_lenght_2(t_data *data, char *str, int i)
 {
+	str = get_next_line(data->map.fd);
+	if (!str)
+		return ;
 	i = 0;
 	while (1)
 	{
+		free(str);
 		str = get_next_line(data->map.fd);
 		if (str == NULL)
 			break ;
@@ -46,6 +50,8 @@ void	read_lenght(t_data *data)
 			break ;
 		i++;
 	}
+	free(str);
+	str = NULL;
 	close(data->map.fd);
 	data->map.map = (char **)malloc(sizeof(char *) * (i + 1));
 	data->map.fd = open(data->map.map_path, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:06:15 by mgallais          #+#    #+#             */
-/*   Updated: 2024/04/18 18:04:30 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/04/19 16:15:43 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char *extract_texture_path(char *str)
 		return_str[i - 3] = str[i];
 		i++;
 	}
-	return_str[i] = '\0';
+	return_str[i - 3] = '\0';
 	return(return_str);
 	
 }

@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/04/18 17:47:47 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/16 17:44:45 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ void table_to_map_2(t_data *data, int k, int i)
 	int j;
 
 	j = 0;
-	map = (char **)malloc(sizeof(char *) * (k - i + 1));
+	map = (char **)malloc(sizeof(char *) * (k - i + 2));
 	while (i <= k)
 	{
-		map[j] = data->map.map[i];
+		map[j] = ft_strdup(data->map.map[i]);
 		i++;
 		j++;
 	}
 	map[j] = NULL;
+	free_split(data->map.map);
 	data->map.map = map;	
 }
 
@@ -39,13 +40,16 @@ void	table_to_map(t_data *data)
 	i = 0;
 	j = 0;
 	l = 0;
-	while(data->map.map[i])
+	data->map.player_start = '+';
+	while(data->map.map[i] != NULL)
         i++;
 	i -= 1;
 	k = i;
     while(i != 0)
     {
-		if (!data->map.map[i][j] || data->map.map[i][j] == '\n')
+		if (!data->map.map[i][j])
+			return (table_to_map_2(data, k, i + 1));
+		if (data->map.map[i][j] == '\n')
 			return (table_to_map_2(data, k, i + 1));
         while(data->map.map[i][j])
         {
@@ -53,6 +57,11 @@ void	table_to_map(t_data *data)
 				j++;
 			else if ((data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' || data->map.map[i][j] == 'W' || data->map.map[i][j] == 'E'))
 			{
+				if (data->map.player_start != '+')
+				{
+					free_data(data);
+					exit_msg("Error\n↪\tMultiple player start\n");
+				}
 				data->map.player_start = data->map.map[i][j];
 				data->map.map[i][j] = '0';
 				data->player_pos.x = i;

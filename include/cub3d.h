@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/16 13:26:27 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:00:25 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,16 @@ typedef struct s_data
 /*###########################################################################*/
 
 void	parsing(t_data *data, int argc, char **argv);
+int		tcheck_max_rgb_value(char *temp);
 void	printf_debug(t_data *data);
 void	read_lenght(t_data *data);
 void	table_to_map(t_data *data);
-void load_png(t_data *data);
+void 	load_png(t_data *data);
 void	texture_to_image(t_data *data);
+void	delete_texture(t_data *data);
+void	free_data(t_data *data);
+void	exit_msg(char *msg);
+void	tcheck_file(t_data *data);
 
 
 #endif

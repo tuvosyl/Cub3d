@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/04/18 18:08:34 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/16 13:26:27 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 /*                                 Includes                                  */
 /*###########################################################################*/
 # include "../lib/MLX42/include/MLX42/MLX42.h"
-# include "../lib/GC/garbage_collector.h"
 # include "../lib/DailyLib/dailylib.h"
 # include "../lib/libft/libft.h"
 # include <stdlib.h>
@@ -101,7 +100,6 @@ typedef struct s_texture_path
 typedef struct s_data
 {
 	mlx_t			*mlx;
-	t_garb			*garbage;
 	t_map			map;
 	t_textures 		textures;
 	t_texture_path	texture_path;

@@ -7,15 +7,12 @@ RM			= rm -f
 CFLAGS 		= -g -Wall -Wextra -Werror
 LIBFTFLAGS	= -L./lib/libft -lft
 MLXFLAGS	= ./lib/MLX42/build/libmlx42.a -I./MLX42/include -ldl -lglfw -pthread -lm
-GCFLAGS		= -L./lib/GC -lgarb_collect
 
 # Lib informations
 LIBFTEXEC	= ./lib/libft/libft.a
 LIBFTHEADERS= ./lib/libft/
 MLX42EXEC	= ./lib/MLX42/build/libmlx42.a
 MLX42HEADERS= ./lib/MLX42/include/
-GCEXEC		= ./lib/GC/libgarb_collect.a
-GCHEADERS	= ./lib/GC/
 
 # Debug and bonus flags
 DEBUG		= 0
@@ -30,14 +27,13 @@ all:
 	@printf "\033[1;36m\nStarting Cub3d compilation\n\e[0m"
 	@make -s LIBFT
 	@make -s MLX42
-	@make -s GC
 	@make -s $(NAME)
 	@if [ $(DEBUG) -eq 1 ]; then printf "\033[1;31m\n > 🚧DEBUG MODE🚧\n\e[0m"; fi
 	@if [ $(BONUS) -eq 1 ]; then printf "\033[1;31m\n > 🌟BONUS MODE🌟\n\e[0m"; fi
 	@printf "\033[1;36m\nDONE !\n\e[0m"
 
 $(NAME): $(OBJ)
-	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIBFTFLAGS) $(MLXFLAGS) $(GCFLAGS)
+	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIBFTFLAGS) $(MLXFLAGS)
 	@printf "\033[1;92m >>> Cub3d compiled                                                     \033[0m"
 
 %.o: %.c
@@ -45,12 +41,6 @@ $(NAME): $(OBJ)
 	@if [ $(DEBUG) -eq 1 ]; then $(CC) $(CFLAGS) -I $(MLX42HEADERS) -c $< -o $@ -D DEBUG=1; \
 	elif [ $(BONUS) -eq 1 ]; then $(CC) $(CFLAGS) -I $(MLX42HEADERS) -c $< -o $@ -D BONUS=1; \
 	else $(CC) $(CFLAGS) -I $(MLX42HEADERS) -c $< -o $@; fi
-
-GC:
-	@if [ ! -f $(GCEXEC) ]; \
-	then printf "\033[1;35m\t| Starting garbage collector compilation\n\e[0m" \
-	&& make -s -C ./lib/GC \
-	&& printf "\033[1;92m\t|  >>> Garbage collector compiled                                       \n\n\033[0m"; fi
 
 LIBFT:
 	@if [ ! -f $(LIBFTEXEC) ]; \
@@ -66,8 +56,6 @@ MLX42:
 clean:
 	@$(RM) $(OBJ)
 	@make -s clean -C ./lib/libft
-	@make -s clean -C ./lib/GC
-	@printf "\033[1;31m- [GC] Object files deleted\n\033[0m"
 	@printf "\033[1;31m- Object files deleted\n\033[0m"
 
 fclean: clean
@@ -75,8 +63,6 @@ fclean: clean
 	@printf "\033[1;31m- [LIBFT] Static lib deleted\n\033[0m"
 	@$(RM) $(MLX42EXEC)
 	@printf "\033[1;31m- [MLX42] Static lib deleted\n\033[0m"
-	@$(RM) $(GCEXEC)
-	@printf "\033[1;31m- [GC] Static lib deleted\n\033[0m"
 	@$(RM) $(NAME)
 	@printf "\033[1;31m- Executable file deleted\n\033[0m"
 

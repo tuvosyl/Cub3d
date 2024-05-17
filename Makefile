@@ -19,7 +19,7 @@ DEBUG		= 0
 BONUS		= 0
 
 # Sources and objects
-SRC			= $(wildcard src/*.c) $(wildcard src/parsing/*.c) $(wildcard src/checking/*.c) $(wildcard src/initialising/*.c)
+SRC			= $(wildcard src/*.c) $(wildcard src/parsing/*.c) $(wildcard src/checking/*.c) $(wildcard src/initialising/*.c) $(wildcard src/raycasting/*.c)
 OBJ			= $(SRC:.c=.o)
 
 # Makefile rules

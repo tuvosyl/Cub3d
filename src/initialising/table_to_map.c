@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table_to_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/05/16 17:44:45 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/17 09:29:18 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	table_to_map(t_data *data)
 				}
 				data->map.player_start = data->map.map[i][j];
 				data->map.map[i][j] = '0';
-				data->player_pos.x = i;
-				data->player_pos.y = j;
+				data->player_pos.x = i + 0.5f;
+				data->player_pos.y = j + 0.5f;
 				j++;
 			}
 			else

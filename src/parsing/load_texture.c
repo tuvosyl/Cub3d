@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 17:32:40 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/16 17:44:30 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/17 09:56:00 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,4 @@ void	delete_texture(t_data *data)
 		mlx_delete_image(data->mlx, data->images.south_image);
 	if (data->images.west_image)
 		mlx_delete_image(data->mlx, data->images.west_image);
-	mlx_terminate(data->mlx);
-	
 }

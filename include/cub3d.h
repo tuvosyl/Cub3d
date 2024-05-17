@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/16 17:00:25 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/17 09:28:41 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ typedef struct s_data
 	t_textures 		textures;
 	t_texture_path	texture_path;
 	t_image			images;
-	t_2int			player_pos;
+	t_2float		player_pos;
 }	t_data;
 
 /*###########################################################################*/
@@ -122,6 +122,8 @@ void	delete_texture(t_data *data);
 void	free_data(t_data *data);
 void	exit_msg(char *msg);
 void	tcheck_file(t_data *data);
-
+int 	is_wall(t_data *data, t_2float pos);
+int		is_sprite(t_data *data, t_2float pos);
+void	start_game(t_data *data);
 
 #endif

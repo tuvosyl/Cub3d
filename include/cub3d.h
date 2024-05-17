@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 14:04:47 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:09:10 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@
 # define FLOOR 	 4
 # define CEILING 5
 
+#define PLAYER_SPEED 0.1
+
 // Custom defines
 # define WHITESPACES "\t\n\v\f\r "
+# define M_PI 3.14159265358979323846
 
 /*###########################################################################*/
 /*                                 Includes                                  */
@@ -106,7 +109,7 @@ typedef struct s_data
 	t_image			images;
 	t_2float		player_pos;
 	t_2int			screen_size;
-	float			player_angle;
+	float			player_dir;
 }	t_data;
 
 /*###########################################################################*/
@@ -128,5 +131,10 @@ int 	is_wall(t_data *data, t_2float pos);
 int		is_sprite(t_data *data, t_2float pos);
 void	start_game(t_data *data);
 void	events(void *data);
+double	deg_to_rad(double deg);
+int		move_forward(t_data *data);
+int		move_backward(t_data *data);
+int		move_left(t_data *data);
+int		move_right(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 14:24:24 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:54:51 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	start_game(t_data *data)
 		return ;
 	texture_to_image(data);
 	// tests :
+	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
+	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2, data->screen_size.y / 2);
 	mlx_image_to_window(data->mlx, data->images.north_image, 0, 0);
 	mlx_image_to_window(data->mlx, data->images.north_image, data->screen_size.x - 64, data->screen_size.y - 64);
 	// ---

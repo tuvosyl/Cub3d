@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:55:39 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 11:39:11 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:17:11 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void init_all(t_data *data)
 	data->textures.ceiling_color.b = -1;
 	data->screen_size.x = 1920;
 	data->screen_size.y = 1080;
-	data->player_angle = 0;
+	data->player_dir = 0;
 }
 int main(int argc, char **argv)
 {

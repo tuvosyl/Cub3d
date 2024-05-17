@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/05/17 14:19:31 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:01:12 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	player_dir(t_data *data)
 {
 	if (data->map.player_start == 'N')
-		data->player_angle = 0;
+		data->player_dir = 0;
 	else if (data->map.player_start == 'E')
-		data->player_angle = 90;
+		data->player_dir = 90;
 	else if (data->map.player_start == 'S')
-		data->player_angle = 180;
+		data->player_dir = 180;
 	else if (data->map.player_start == 'W')
-		data->player_angle = 270;
+		data->player_dir = 270;
 }
 
 void table_to_map_2(t_data *data, int k, int i)

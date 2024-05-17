@@ -6,26 +6,40 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 14:31:07 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:53:50 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+static int	player_controls(t_data *data)
+{
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W) && move_forward(data))
+		return (1);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_S) && move_backward(data))
+		return (1);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A) && move_left(data))
+		return (1);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_D) && move_right(data))
+		return (1);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx);
+	return (0);
+}
+
 void	events(void *params)
 {
 	t_data	*data;
 	static t_2int	previous_screen_size = {1920, 1080};
-
+	t_2int	mouse_pos = {0, 0};
+	
 	data = (t_data *)params;
-
+	player_controls(data);
 	// tests :
-	int	x;
-	int	y;
-	mlx_get_mouse_pos(data->mlx, &x, &y);
-	if (x > data->screen_size.x / 2)
+	mlx_get_mouse_pos(data->mlx, &mouse_pos.x, &mouse_pos.y);
+	if (mouse_pos.x > data->screen_size.x / 2 + 10)
 		printf("+");
-	else if (x < data->screen_size.x / 2)
+	else if (mouse_pos.x < data->screen_size.x / 2 - 10)
 		printf("-");
 	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2, data->screen_size.y / 2);
 	if (data->screen_size.x != previous_screen_size.x || data->screen_size.y != previous_screen_size.y)

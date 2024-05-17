@@ -6,12 +6,11 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 09:20:21 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:57:55 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
 
 int is_wall(t_data *data, t_2float pos)
 {

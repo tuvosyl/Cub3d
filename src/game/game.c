@@ -6,12 +6,14 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 11:44:02 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:58:00 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+// raycaster est dans la boucle du jeu pour qu'elle fonctionne a chaque frame
+//   on peut la mettre a la fin de player_commands si probleme de performances
 void	start_game(t_data *data)
 {
 	data->mlx = mlx_init(1920, 1080, "Cub3D", true);

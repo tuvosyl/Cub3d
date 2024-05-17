@@ -1,6 +1,6 @@
-NO ./maps/textures/chat.png
+NO ./maps/textures/wall.png
 SO ./maps/textures/wall.png
-WE ./maps/textures/chat_2.png
+WE ./maps/textures/wall.png
 EA ./maps/textures/wall.png
 
 

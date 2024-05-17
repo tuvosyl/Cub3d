@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 09:59:51 by mgallais          #+#    #+#             */
-/*   Updated: 2024/04/19 15:55:50 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/17 13:04:26 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,4 @@ void printf_debug(t_data *data)
 	ft_printf("\033[0;35msouth_path : \033[0m%s\n", data->texture_path.south_texture);
 	ft_printf("\033[0;35mwest_path  : \033[0m%s\n", data->texture_path.west_texture);
 	ft_printf("\033[0;35meast_path  : \033[0m%s\n", data->texture_path.east_texture);
-	
 }

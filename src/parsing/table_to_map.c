@@ -6,11 +6,23 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/05/17 09:29:18 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:19:31 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+static void	player_dir(t_data *data)
+{
+	if (data->map.player_start == 'N')
+		data->player_angle = 0;
+	else if (data->map.player_start == 'E')
+		data->player_angle = 90;
+	else if (data->map.player_start == 'S')
+		data->player_angle = 180;
+	else if (data->map.player_start == 'W')
+		data->player_angle = 270;
+}
 
 void table_to_map_2(t_data *data, int k, int i)
 {
@@ -66,6 +78,7 @@ void	table_to_map(t_data *data)
 				data->map.map[i][j] = '0';
 				data->player_pos.x = i + 0.5f;
 				data->player_pos.y = j + 0.5f;
+				player_dir(data);
 				j++;
 			}
 			else

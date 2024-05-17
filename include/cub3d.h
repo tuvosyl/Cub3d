@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 11:38:13 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:04:47 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ void	tcheck_file(t_data *data);
 int 	is_wall(t_data *data, t_2float pos);
 int		is_sprite(t_data *data, t_2float pos);
 void	start_game(t_data *data);
+void	events(void *data);
 
 #endif

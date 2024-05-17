@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:06:15 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/16 18:03:49 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/17 03:13:51 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ t_3RGB extract_RGB(char *str, t_3RGB return_value)
     int which_value = 0;
     char *temp;
 
-    while(str[i] && str[i] != '\n' && which_value != 3)
+    while(str[i] && str[i] != '\n' && which_value != 3 && str[i] != '-')
     {
+		if (str[i] == '-')
+			exit_msg("Error\n↪\tRGB value is negative");
         if(ft_isdigit(str[i]) == 1)
         {
             temp = extract_RGB_2(str, &i, &which_value);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:55:39 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/16 18:03:29 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/17 03:24:24 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ int main(int argc, char **argv)
 	if (DEBUG)
 		printf_debug(&data);
 	//start_game(&data);
-	
-	
-	mlx_set_cursor(data.mlx, mlx_create_cursor(data.textures.west_texture));
+	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
 	mlx_resize_image(data.images.north_image, 1800, 900);
 	mlx_image_to_window(data.mlx, data.images.north_image, 0, 0);
 	mlx_loop(data.mlx);

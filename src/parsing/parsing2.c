@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:24:38 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/16 17:45:13 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/17 03:12:12 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int tcheck_max_rgb_value(char *temp)
 	
 	return_value = ft_atoi(temp);
 	if (return_value > 255 || return_value < 0)
-		return (-1);
+		exit_msg("Error\n↪\tRGB value is not between 0 and 255");
 	return (return_value);	
 }
 

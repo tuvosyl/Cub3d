@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 09:28:41 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:38:13 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ typedef struct s_data
 	t_texture_path	texture_path;
 	t_image			images;
 	t_2float		player_pos;
+	t_2int			screen_size;
+	float			player_angle;
 }	t_data;
 
 /*###########################################################################*/

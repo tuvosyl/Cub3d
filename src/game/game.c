@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 10:04:40 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:44:02 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	start_game(t_data *data)
 	if (!data->mlx)
 		return ;
 	texture_to_image(data);
+	//mlx_loop_hook(data->mlx, player_commands, data);
+	//mlx_loop_hook(data->mlx, raycaster, data);
 	mlx_loop(data->mlx);
 	delete_texture(data);
 	mlx_terminate(data->mlx);

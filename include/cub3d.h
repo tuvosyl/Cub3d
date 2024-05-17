@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 17:49:03 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:12:44 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define FLOOR 	 4
 # define CEILING 5
 
-#define PLAYER_SPEED 0.1
+#define PLAYER_SPEED 0.05
 
 // Custom defines
 # define WHITESPACES "\t\n\v\f\r "

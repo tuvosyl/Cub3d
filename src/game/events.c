@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 17:59:08 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:15:14 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	events(void *params)
 	// tests :
 	mlx_get_mouse_pos(data->mlx, &mouse_pos.x, &mouse_pos.y);
 	if (mouse_pos.x > data->screen_size.x / 2 + 10)
-		printf("+");
+		data->player_dir += 4.5;
 	else if (mouse_pos.x < data->screen_size.x / 2 - 10)
-		printf("-");
+		data->player_dir -= 4.5;
 	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2, data->screen_size.y / 2);
 	if (data->screen_size.x != previous_screen_size.x || data->screen_size.y != previous_screen_size.y)
 	{

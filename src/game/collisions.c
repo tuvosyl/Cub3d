@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 16:04:03 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:37:24 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int is_wall(t_data *data, t_2float pos)
 	int x;
 	int y;
 
-	printf("x: %f, y: %f\n", pos.x, pos.y);
 	x = (int)pos.x;
 	y = (int)pos.y;
 	if (x < 0 || y < 0 || x >= data->map.map_size.x || y >= data->map.map_size.y)

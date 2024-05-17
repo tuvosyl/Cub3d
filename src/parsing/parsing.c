@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:06:15 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 03:13:51 by val              ###   ########.fr       */
+/*   Updated: 2024/05/17 17:21:57 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void	parsing(t_data *data, int argc, char **argv)
 		return (ft_printf("Error\n↪\tFloor color not valid\n"), exit (1));
 	read_lenght(data);
 	table_to_map(data);
+	find_map_size_and_player_pos(data);
 	if (data->map.player_start == '+')
 		return (ft_printf("Error\n↪\tPlayer position not found\n"), exit (1));
 }

@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:24:38 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 13:15:27 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:36:08 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,30 @@ void tcheck_file(t_data *data)
 	data->map.fd = open(data->map.map_path, O_RDONLY);
 	if (data->map.fd == -1)
 		exit_msg("Error\n↪\tMap file not found");
+}
+
+void find_map_size_and_player_pos(t_data *data)
+{
+	t_3int t;
+
+	t = (t_3int){0, 0, 0};
+	while (data->map.map[t.x] != NULL)
+	{
+		t.y = 0;
+		while (data->map.map[t.x][t.y] != '\0')
+		{
+			if (data->map.map[t.x][t.y] == 'N' || data->map.map[t.x][t.y] == 'S' || data->map.map[t.x][t.y] == 'W' || data->map.map[t.x][t.y] == 'E')
+			{
+				data->player_pos.x = t.y + 0.5;
+				data->player_pos.y = t.x + 0.5;
+				data->map.map[t.x][t.y] = '0';
+			}
+			t.y++;
+		}
+		if (t.y > t.z)
+			t.z = t.y;
+		t.x++;
+	}
+	data->map.map_size.x = t.z;
+	data->map.map_size.y = t.x;
 }

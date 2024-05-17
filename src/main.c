@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:55:39 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 15:17:11 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:32:13 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int main(int argc, char **argv)
 	load_png(&data);
 	if (DEBUG)
 		printf_debug(&data);
+	printf("player_dir : %f\n", data.player_dir);
 	start_game(&data);
 	free_data(&data);
 	return (0);

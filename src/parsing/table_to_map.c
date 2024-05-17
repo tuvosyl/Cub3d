@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/05/17 16:01:12 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:56:06 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	player_dir(t_data *data)
 {
 	if (data->map.player_start == 'N')
-		data->player_dir = 0;
-	else if (data->map.player_start == 'E')
-		data->player_dir = 90;
-	else if (data->map.player_start == 'S')
-		data->player_dir = 180;
-	else if (data->map.player_start == 'W')
 		data->player_dir = 270;
+	else if (data->map.player_start == 'E')
+		data->player_dir = 0;
+	else if (data->map.player_start == 'S')
+		data->player_dir = 90;
+	else if (data->map.player_start == 'W')
+		data->player_dir = 180;
 }
 
 void table_to_map_2(t_data *data, int k, int i)
@@ -75,9 +75,6 @@ void	table_to_map(t_data *data)
 					exit_msg("Error\n↪\tMultiple player start\n");
 				}
 				data->map.player_start = data->map.map[i][j];
-				data->map.map[i][j] = '0';
-				data->player_pos.x = i + 0.5f;
-				data->player_pos.y = j + 0.5f;
 				player_dir(data);
 				j++;
 			}

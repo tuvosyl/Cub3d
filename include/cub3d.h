@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 16:09:10 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:49:03 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_data
 	t_2float		player_pos;
 	t_2int			screen_size;
 	float			player_dir;
+	mlx_image_t		*player_img;
 }	t_data;
 
 /*###########################################################################*/
@@ -136,5 +137,6 @@ int		move_forward(t_data *data);
 int		move_backward(t_data *data);
 int		move_left(t_data *data);
 int		move_right(t_data *data);
+void	find_map_size_and_player_pos(t_data *data);
 
 #endif

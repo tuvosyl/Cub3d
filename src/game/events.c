@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 15:53:50 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:59:08 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	player_controls(t_data *data)
 {
-	if (mlx_is_key_down(data->mlx, MLX_KEY_W) && move_forward(data))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W) && move_forward(data) == 2)
 		return (1);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_S) && move_backward(data))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_S) && move_backward(data) == 2)
 		return (1);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A) && move_left(data))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A) && move_left(data) == 2)
 		return (1);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_D) && move_right(data))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_D) && move_right(data) == 2)
 		return (1);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
@@ -35,6 +35,8 @@ void	events(void *params)
 	
 	data = (t_data *)params;
 	player_controls(data);
+	data->player_img->instances[0].x = data->player_pos.x * 32;
+	data->player_img->instances[0].y = data->player_pos.y * 32;
 	// tests :
 	mlx_get_mouse_pos(data->mlx, &mouse_pos.x, &mouse_pos.y);
 	if (mouse_pos.x > data->screen_size.x / 2 + 10)

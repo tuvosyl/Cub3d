@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:11:49 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 13:15:13 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:06:00 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	read_lenght_2(t_data *data, char *str, int i)
 {
-
+	int		len;
+	
 	i = 0;
+	len = 0;
 	while (1)
 	{
 		str = get_next_line(data->map.fd);

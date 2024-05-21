@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 18:12:44 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:38:21 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@
 # define FLOOR 	 4
 # define CEILING 5
 
-#define PLAYER_SPEED 0.05
+# define PLAYER_SPEED 0.05
+# define PLAYER_ROTATION_SPEED 4.5f
+# define FOV 90
 
 // Custom defines
 # define WHITESPACES "\t\n\v\f\r "
@@ -111,6 +113,7 @@ typedef struct s_data
 	t_2int			screen_size;
 	float			player_dir;
 	mlx_image_t		*player_img;
+	mlx_image_t		*walls_img;
 }	t_data;
 
 /*###########################################################################*/
@@ -138,5 +141,6 @@ int		move_backward(t_data *data);
 int		move_left(t_data *data);
 int		move_right(t_data *data);
 void	find_map_size_and_player_pos(t_data *data);
+void	new_raycast(t_data *data);
 
 #endif

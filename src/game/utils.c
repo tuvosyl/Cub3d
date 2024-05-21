@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:30:20 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 15:30:48 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:22:31 by valentins        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-double deg_to_rad(double deg)
+double	deg_to_rad(double deg)
 {
-	return deg * M_PI / 180.0;
+	return (deg * M_PI / 180.0);
 }

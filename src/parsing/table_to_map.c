@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table_to_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/05/17 17:56:06 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:15:58 by valentins        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static void	player_dir(t_data *data)
 		data->player_dir = 180;
 }
 
-void table_to_map_2(t_data *data, int k, int i)
+void	table_to_map_2(t_data *data, int k, int i)
 {
-	char **map;
-	int j;
+	char	**map;
+	int		j;
 
 	j = 0;
 	map = (char **)malloc(sizeof(char *) * (k - i + 2));
@@ -39,52 +39,59 @@ void table_to_map_2(t_data *data, int k, int i)
 	}
 	map[j] = NULL;
 	free_split(data->map.map);
-	data->map.map = map;	
+	data->map.map = map;
+}
+
+void	table_to_map_3(t_data *data, t_4int i)
+{
+	while (data->map.map[i.r][i.g])
+	{
+		if (data->map.map[i.r][i.g] == '1' || data->map.map[i.r][i.g] == ' '
+			|| data->map.map[i.r][i.g] == '0'
+			|| data->map.map[i.r][i.g] == '\n')
+			i.g++;
+		else if ((data->map.map[i.r][i.g] == 'N'
+			|| data->map.map[i.r][i.g] == 'S'
+			|| data->map.map[i.r][i.g] == 'W'
+			|| data->map.map[i.r][i.g] == 'E'))
+		{
+			if (data->map.player_start != '+')
+			{
+				free_data(data);
+				exit_msg("Error\n↪\tMultiple player start\n");
+			}
+			data->map.player_start = data->map.map[i.r][i.g];
+			player_dir(data);
+			i.g++;
+		}
+		else
+			return (table_to_map_2(data, i.l, i.r + 1));
+	}
 }
 
 void	table_to_map(t_data *data)
 {
-	int i;
-	int j;
-	int k;
-	int l;
+	t_4int	i;
 
-	i = 0;
-	j = 0;
-	l = 0;
+	i.r = 0;
+	i.g = 0;
+	i.b = 0;
 	data->map.player_start = '+';
-	while(data->map.map[i] != NULL)
-        i++;
-	i -= 1;
-	k = i;
-    while(i != 0)
-    {
-		if (!data->map.map[i][j])
-			return (table_to_map_2(data, k, i + 1));
-		if (data->map.map[i][j] == '\n')
-			return (table_to_map_2(data, k, i + 1));
-        while(data->map.map[i][j])
-        {
-            if (data->map.map[i][j] == '1' || data->map.map[i][j] == ' ' || data->map.map[i][j] == '0' || data->map.map[i][j] == '\n')
-				j++;
-			else if ((data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' || data->map.map[i][j] == 'W' || data->map.map[i][j] == 'E'))
-			{
-				if (data->map.player_start != '+')
-				{
-					free_data(data);
-					exit_msg("Error\n↪\tMultiple player start\n");
-				}
-				data->map.player_start = data->map.map[i][j];
-				player_dir(data);
-				j++;
-			}
-			else
-				return (table_to_map_2(data, k, i + 1));
-        }
-		j = 0;
-		if (l != 0)
+	while (data->map.map[i.r] != NULL)
+		i.r++;
+	i.r -= 1;
+	i.l = i.r;
+	while (i.r != 0)
+	{
+		if (!data->map.map[i.r][i.g])
+			return (table_to_map_2(data, i.l, i.r + 1));
+		if (data->map.map[i.r][i.g] == '\n')
+			return (table_to_map_2(data, i.l, i.r + 1));
+		table_to_map_3(data, i);
+		i.g = 0;
+		if (i.b != 0)
 			break ;
-        i--;
-    }
-	exit(1) ;
+		i.r--;
+	}
+	exit(1);
 }

@@ -3,49 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:24:38 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 17:36:08 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:04:54 by valentins        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int tcheck_max_rgb_value(char *temp)
+int	tcheck_max_rgb_value(char *temp)
 {
-	int return_value;
-	
+	int	return_value;
+
 	return_value = ft_atoi(temp);
 	if (return_value > 255 || return_value < 0)
 		exit_msg("Error\n↪\tRGB value is not between 0 and 255");
-	return (return_value);	
+	return (return_value);
 }
 
-void tcheck_file(t_data *data)
+void	tcheck_file(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (data->map.map_path[i])
 		i++;
-	if (data->map.map_path[i - 1] != 'b' || data->map.map_path[i - 2] != 'u' || data->map.map_path[i - 3] != 'c' || data->map.map_path[i - 4] != '.')
+	if (data->map.map_path[i - 1] != 'b' || data->map.map_path[i - 2] != 'u'
+		|| data->map.map_path[i - 3] != 'c' || data->map.map_path[i - 4] != '.')
 		exit_msg("Error\n↪\tMap file is not a .cub file");
 	data->map.fd = open(data->map.map_path, O_RDONLY | __O_DIRECTORY);
 	if (data->map.fd != -1)
 	{
 		close(data->map.fd);
 		exit_msg("Error\n↪\tMap file is a directory");
-	
 	}
 	data->map.fd = open(data->map.map_path, O_RDONLY);
 	if (data->map.fd == -1)
 		exit_msg("Error\n↪\tMap file not found");
 }
 
-void find_map_size_and_player_pos(t_data *data)
+void	find_map_size_and_player_pos(t_data *data)
 {
-	t_3int t;
+	t_3int	t;
 
 	t = (t_3int){0, 0, 0};
 	while (data->map.map[t.x] != NULL)
@@ -53,7 +53,9 @@ void find_map_size_and_player_pos(t_data *data)
 		t.y = 0;
 		while (data->map.map[t.x][t.y] != '\0')
 		{
-			if (data->map.map[t.x][t.y] == 'N' || data->map.map[t.x][t.y] == 'S' || data->map.map[t.x][t.y] == 'W' || data->map.map[t.x][t.y] == 'E')
+			if (data->map.map[t.x][t.y] == 'N' || data->map.map[t.x][t.y] == 'S'
+				|| data->map.map[t.x][t.y] == 'W'
+				|| data->map.map[t.x][t.y] == 'E')
 			{
 				data->player_pos.x = t.y + 0.5;
 				data->player_pos.y = t.x + 0.5;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 17:32:40 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/17 13:15:18 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:33:59 by valentins        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,28 @@
 
 void	error(t_data *data)
 {
-	if (data->textures.north_texture)
-		mlx_delete_texture(data->textures.north_texture);
-	if (data->textures.east_texture)
-		mlx_delete_texture(data->textures.east_texture);
-	if (data->textures.south_texture)
-		mlx_delete_texture(data->textures.south_texture);
-	if (data->textures.west_texture)
-		mlx_delete_texture(data->textures.west_texture);
 	free_data(data);
-	ft_printf("Error\n↪\t%s\n", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);                                                                                                                                                                                                                                                   
+	ft_printf("Error\n↪\tcant open a\n");
+	exit(EXIT_FAILURE);
 }
 
-void load_png(t_data *data)
+void	load_png_2(t_data *data)
 {
-	data->textures.north_texture = mlx_load_png(data->texture_path.north_texture);
+	int	fd;
+
+	fd = open(data->texture_path.east_texture, O_RDONLY);
+	if (fd < 0)
+	{
+		free_data(data);
+		exit_msg("cant open east texture");
+	}
+	close (fd);
+	data->textures.north_texture
+		= mlx_load_png(data->texture_path.north_texture);
 	if (!data->textures.north_texture)
 		error(data);
-	data->textures.south_texture = mlx_load_png(data->texture_path.south_texture);
+	data->textures.south_texture
+		= mlx_load_png(data->texture_path.south_texture);
 	if (!data->textures.south_texture)
 		error(data);
 	data->textures.west_texture = mlx_load_png(data->texture_path.west_texture);
@@ -43,18 +46,50 @@ void load_png(t_data *data)
 		error(data);
 }
 
+void	load_png(t_data *data)
+{
+	int	fd;
+
+	fd = open(data->texture_path.north_texture, O_RDONLY);
+	if (fd < 0)
+	{
+		free_data(data);
+		exit_msg("cant open north texture");
+	}
+	close (fd);
+	fd = open(data->texture_path.south_texture, O_RDONLY);
+	if (fd < 0)
+	{
+		free_data(data);
+		exit_msg("cant open south texture");
+	}
+	close (fd);
+	fd = open(data->texture_path.west_texture, O_RDONLY);
+	if (fd < 0)
+	{
+		free_data(data);
+		exit_msg("cant open west texture");
+	}
+	close (fd);
+	load_png_2(data);
+}
+
 void	texture_to_image(t_data *data)
 {
-	data->images.north_image = mlx_texture_to_image(data->mlx, data->textures.north_texture);
+	data->images.north_image
+		= mlx_texture_to_image(data->mlx, data->textures.north_texture);
 	if (!data->images.north_image)
 		error(data);
-	data->images.south_image = mlx_texture_to_image(data->mlx, data->textures.south_texture);
+	data->images.south_image
+		= mlx_texture_to_image(data->mlx, data->textures.south_texture);
 	if (!data->images.south_image)
 		error(data);
-	data->images.west_image = mlx_texture_to_image(data->mlx, data->textures.west_texture);
+	data->images.west_image
+		= mlx_texture_to_image(data->mlx, data->textures.west_texture);
 	if (!data->images.west_image)
 		error(data);
-	data->images.east_image = mlx_texture_to_image(data->mlx, data->textures.east_texture);
+	data->images.east_image
+		= mlx_texture_to_image(data->mlx, data->textures.east_texture);
 	if (!data->images.east_image)
 		error(data);
 }

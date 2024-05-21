@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/21 15:38:21 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:01:38 by valentins        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,7 @@ int		move_left(t_data *data);
 int		move_right(t_data *data);
 void	find_map_size_and_player_pos(t_data *data);
 void	new_raycast(t_data *data);
+void	extract_value_condition(t_data *data);
+int		extract_value(t_data *data);
 
 #endif

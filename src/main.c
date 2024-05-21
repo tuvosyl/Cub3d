@@ -3,21 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:55:39 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/17 18:16:28 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:25:33 by valentins        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void init_all(t_data *data)
+void	init_all(t_data *data)
 {
 	data->texture_path.north_texture = NULL;
 	data->texture_path.south_texture = NULL;
 	data->texture_path.west_texture = NULL;
 	data->texture_path.east_texture = NULL;
+	data->images.east_image = NULL;
+	data->images.north_image = NULL;
+	data->images.south_image = NULL;
+	data->images.west_image = NULL;
 	data->map.map = NULL;
 	data->textures.ceiling_color.r = -1;
 	data->textures.floor_color.r = -1;
@@ -29,9 +33,10 @@ void init_all(t_data *data)
 	data->screen_size.y = 1080;
 	data->player_dir = 0;
 }
-int main(int argc, char **argv)
+
+int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	init_all(&data);
 	parsing(&data, argc, argv);

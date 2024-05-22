@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 14:06:46 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:29:26 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,16 @@ static bool	player_controls(t_data *data)
 }
 
 // return true if the player moved camera
-static bool	mouse_controls(t_data *data)
+static bool	camera_controls(t_data *data)
 {
 	t_2int	mouse_pos;
 
 	mouse_pos.x = 0;
 	mouse_pos.y = 0;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+		data->player_dir -= PLAYER_ROTATION_SPEED;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		data->player_dir += PLAYER_ROTATION_SPEED;
 	mlx_get_mouse_pos(data->mlx, &mouse_pos.x, &mouse_pos.y);
 	if (mouse_pos.x > data->screen_size.x / 2 + 10)
 		data->player_dir += PLAYER_ROTATION_SPEED;
@@ -71,15 +75,15 @@ void	events(void *params)
 	t_data			*data;
 	
 	data = (t_data *)params;
-	player_controls(data);
-	mouse_controls(data);
-	window_resized(data);
-	// if (player_controls(data))
-	// 	new_raycast(data);
-	// if (mouse_controls(data))
-	// 	new_raycast(data);
-	// if (window_resized(data))
-	// 	new_raycast(data);
+	// player_controls(data);
+	// camera_controls(data);
+	// window_resized(data);
+	if (player_controls(data))
+		new_raycast(data);
+	if (camera_controls(data))
+		new_raycast(data);
+	if (window_resized(data))
+		new_raycast(data);
 	// tests :
 	data->player_img->instances[0].x = data->player_pos.x * 32;
 	data->player_img->instances[0].y = data->player_pos.y * 32;

@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 12:55:29 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:06:46 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,35 @@ static bool	mouse_controls(t_data *data)
 	return (true);
 }
 
+static bool	window_resized(t_data *data)
+{
+	static t_2int	previous_screen_size = {1920, 1080};
+
+	if (data->screen_size.x != previous_screen_size.x
+		|| data->screen_size.y != previous_screen_size.y)
+	{
+		previous_screen_size.x = data->screen_size.x;
+		previous_screen_size.y = data->screen_size.y;
+		return (true);
+	}
+	return (false);
+}
+
 // game loop
 void	events(void *params)
 {
+	static t_2int	previous_screen_size = {1920, 1080};
 	t_data			*data;
-	static t_2int	previous_screen_size = {1920, 1080}; // test
+	
 	data = (t_data *)params;
 	player_controls(data);
 	mouse_controls(data);
+	window_resized(data);
 	// if (player_controls(data))
 	// 	new_raycast(data);
 	// if (mouse_controls(data))
+	// 	new_raycast(data);
+	// if (window_resized(data))
 	// 	new_raycast(data);
 	// tests :
 	data->player_img->instances[0].x = data->player_pos.x * 32;
@@ -70,8 +88,6 @@ void	events(void *params)
 	{
 		data->images.north_image->instances[1].x = data->screen_size.x - 64;
 		data->images.north_image->instances[1].y = data->screen_size.y - 64;
-		previous_screen_size.x = data->screen_size.x;
-		previous_screen_size.y = data->screen_size.y;
 	}
 	// ---
 }

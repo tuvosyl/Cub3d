@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/21 15:46:51 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:59:59 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	draw_rays(t_data *data, int *rays)
 		j = data->screen_size.y / 2 - height / 2;
 		while (j != data->screen_size.y / 2 + height / 2)
 		{
+			
 			j++;
 		}
 		i++;

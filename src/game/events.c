@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/21 19:19:34 by valentins        ###   ########.fr       */
+/*   Updated: 2024/05/22 12:55:29 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 // return true if the player has moved
 static bool	player_controls(t_data *data)
 {
+	bool	has_moved;
+
+	has_moved = false;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W) && move_forward(data) != 2)
-		return (true);
+		has_moved = true;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S) && move_backward(data) != 2)
-		return (true);
+		has_moved = true;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A) && move_left(data) != 2)
-		return (true);
+		has_moved = true;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D) && move_right(data) != 2)
-		return (true);
+		has_moved = true;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	return (false);
+	return (has_moved);
 }
 
 // return true if the player moved camera

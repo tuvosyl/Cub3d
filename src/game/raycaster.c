@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 16:11:42 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:52:44 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ static void	draw_rays(t_data *data, float *rays)
 	data->camera_view = mlx_new_image(data->mlx, data->screen_size.x, data->screen_size.y);
 	while (incr.x != data->screen_size.x)
 	{
-		height = (int)(data->screen_size.y - rays[incr.x] * 4);
+		height = (int)(data->screen_size.y - rays[incr.x] * 3);
 		if (height < 0)
 			height = 0;
 		incr.y = data->screen_size.y / 2 - height / 2;
 		while (incr.y != data->screen_size.y / 2 + height / 2)
 		{
 			color = ft_pixel(255, 255, 255, 255);
-			// if (incr.y < 0 || incr.y >= data->screen_size.y)
-			// 	color = ft_pixel(0, 0, 0, 0);
 			mlx_put_pixel(data->camera_view, incr.x, incr.y, color);
 			incr.y++;
 		}
@@ -40,7 +38,7 @@ static void	draw_rays(t_data *data, float *rays)
 	mlx_image_to_window(data->mlx, data->camera_view, 0, 0);
 }
 
-static float	single_raycast(t_data *data, double angle)
+static float	single_raycast(t_data *data, double angle, int ray_num)
 {
 	t_2float	ray;
 	float		distance;
@@ -53,7 +51,7 @@ static float	single_raycast(t_data *data, double angle)
 		ray.y += sin(deg_to_rad(angle)) * RAY_SPEED;
 		distance++;
 	}
-	return (distance * cos(deg_to_rad(angle - data->player_dir)));
+	return (distance);
 }
 
 static double	find_angle(t_data *data, int i)
@@ -74,7 +72,7 @@ void	new_raycast(t_data *data)
 	rays = malloc(sizeof(float) * data->screen_size.x);
 	while (i != data->screen_size.x)
 	{
-		rays[i] = single_raycast(data, find_angle(data, i));
+		rays[i] = single_raycast(data, find_angle(data, i), i);
 		i++;
 		// printf("rays[%d] = %f\n", i, rays[i]);
 	}

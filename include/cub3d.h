@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/23 12:56:45 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:05:22 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@
 # define CEILING 5
 
 # define PLAYER_SPEED 0.05f
-# define PLAYER_ROTATION_SPEED 4.5f
+# define PLAYER_ROTATION_SPEED 4.0f
 # define FOV 90
 # define TEXTURE_SIZE 64
+# define MAX_DISTANCE 1000
 
 // Custom defines
 # define WHITESPACES "\t\n\v\f\r "

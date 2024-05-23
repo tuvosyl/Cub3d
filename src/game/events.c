@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 12:53:53 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:10:01 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static bool	camera_controls(t_data *data)
 		data->player_dir += PLAYER_ROTATION_SPEED;
 	mlx_get_mouse_pos(data->mlx, &mouse_pos.x, &mouse_pos.y);
 	if (mouse_pos.x > data->screen_size.x / 2 + 10)
-		data->player_dir += PLAYER_ROTATION_SPEED;
+		data->player_dir += (mouse_pos.x - data->screen_size.x / 2) / 10;
 	else if (mouse_pos.x < data->screen_size.x / 2 - 10)
-		data->player_dir -= PLAYER_ROTATION_SPEED;
+		data->player_dir -= (data->screen_size.x / 2 - mouse_pos.x) / 10;
 	else
 		return (false);
 	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2,
@@ -63,8 +63,6 @@ static bool	window_resized(t_data *data)
 	{
 		previous_screen_size.x = data->screen_size.x;
 		previous_screen_size.y = data->screen_size.y;
-		mlx_delete_image(data->mlx, data->camera_view);
-		data->camera_view = mlx_new_image(data->mlx, data->screen_size.x, data->screen_size.y);
 		return (true);
 	}
 	return (false);
@@ -75,16 +73,17 @@ void	events(void *params)
 {
 	static t_2int	previous_screen_size = {1920, 1080};
 	t_data			*data;
+	bool			do_raycast;
 	
 	data = (t_data *)params;
-	// player_controls(data);
-	// camera_controls(data);
-	// window_resized(data);
+	do_raycast = false;
 	if (player_controls(data))
-		new_raycast(data);
+		do_raycast = true;
 	if (camera_controls(data))
-		new_raycast(data);
+		do_raycast = true;
 	if (window_resized(data))
+		do_raycast = true;
+	if (do_raycast)
 		new_raycast(data);
 	// tests :
 	data->player_img->instances[0].x = data->player_pos.x * 32;

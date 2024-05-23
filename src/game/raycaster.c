@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 12:12:13 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:02:11 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,30 @@
 static void	draw_rays(t_data *data, float *rays)
 {
 	int		height;
-	int		i;
+	int		color;
+	t_2int	incr;
 
-	i = 0;
-	while (i != data->screen_size.x)
+	incr.x = 0;
+	mlx_delete_image(data->mlx, data->camera_view);
+	data->camera_view = mlx_new_image(data->mlx, data->screen_size.x, data->screen_size.y);
+	while (incr.x != data->screen_size.x)
 	{
-		height = (int)(data->screen_size.y - rays[i] * 2);
-		// draw wall texture with depth
-		i++;
+		height = (int)(data->screen_size.y - rays[incr.x] * 2);
+		if (height < 0)
+			height = 0;
+		incr.y = data->screen_size.y / 2 - height / 2;
+		while (incr.y != data->screen_size.y / 2 + height / 2)
+		{
+			if (rays[incr.x] > MAX_DISTANCE)
+				color = 0xFF000000;
+			else
+				color = 0xFF000000 + (int)(255 * (1 - rays[incr.x] / MAX_DISTANCE));
+			mlx_put_pixel(data->camera_view, incr.x, incr.y, color);
+			incr.y++;
+		}
+		incr.x++;
 	}
+	mlx_image_to_window(data->mlx, data->camera_view, 0, 0);
 }
 
 static float	single_raycast(t_data *data, double angle)
@@ -39,7 +54,7 @@ static float	single_raycast(t_data *data, double angle)
 		ray.y += sin(deg_to_rad(angle)) * PLAYER_SPEED;
 		distance++;
 	}
-	return (distance * cos(deg_to_rad(angle - data->player_dir)));
+	return (distance  * cos(deg_to_rad(angle - data->player_dir)));
 }
 
 static double	find_angle(t_data *data, int i)

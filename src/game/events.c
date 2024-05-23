@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 15:10:01 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:04:24 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static bool	window_resized(t_data *data)
 // game loop
 void	events(void *params)
 {
-	static t_2int	previous_screen_size = {1920, 1080};
 	t_data			*data;
 	bool			do_raycast;
 	
@@ -88,11 +87,5 @@ void	events(void *params)
 	// tests :
 	data->player_img->instances[0].x = data->player_pos.x * 32;
 	data->player_img->instances[0].y = data->player_pos.y * 32;
-	if (data->screen_size.x != previous_screen_size.x
-		|| data->screen_size.y != previous_screen_size.y)
-	{
-		data->images.north_image->instances[1].x = data->screen_size.x - 64;
-		data->images.north_image->instances[1].y = data->screen_size.y - 64;
-	}
 	// ---
 }

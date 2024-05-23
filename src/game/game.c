@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 12:53:01 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:03:53 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ void	start_game(t_data *data)
 	data->camera_view = mlx_new_image(data->mlx, data->screen_size.x, data->screen_size.y);
 	// tests :
 	print_map(data);
-	mlx_image_to_window(data->mlx, data->images.north_image, 0, 0);
-	mlx_image_to_window(data->mlx, data->images.north_image,
-		data->screen_size.x - 64, data->screen_size.y - 64);
 	// ---
 	mlx_resize_hook(data->mlx, resize, data);
 	mlx_loop_hook(data->mlx, events, data);

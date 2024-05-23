@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/23 15:05:22 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:11:16 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@
 # define CEILING 5
 
 # define PLAYER_SPEED 0.05f
+# define RAY_SPEED 0.05f
 # define PLAYER_ROTATION_SPEED 4.0f
-# define FOV 90
+# define FOV 90.0f
 # define TEXTURE_SIZE 64
-# define MAX_DISTANCE 1000
+# define MAX_DISTANCE 250
 
 // Custom defines
 # define WHITESPACES "\t\n\v\f\r "
@@ -53,14 +54,15 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/DailyLib/dailylib.h"
 # include "../lib/libft/libft.h"
-# include <stdlib.h>
+# include <sys/time.h>
 # include <stdbool.h>
+# include <stdlib.h>
 # include <stdint.h>
 # include <string.h>
+# include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <errno.h>
-# include <unistd.h>
 # include <math.h>
 
 /*###########################################################################*/
@@ -146,5 +148,6 @@ void	find_map_size_and_player_pos(t_data *data);
 void	new_raycast(t_data *data);
 void	extract_value_condition(t_data *data);
 int		extract_value(t_data *data);
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 #endif

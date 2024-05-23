@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 15:02:11 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:11:42 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ static void	draw_rays(t_data *data, float *rays)
 	data->camera_view = mlx_new_image(data->mlx, data->screen_size.x, data->screen_size.y);
 	while (incr.x != data->screen_size.x)
 	{
-		height = (int)(data->screen_size.y - rays[incr.x] * 2);
+		height = (int)(data->screen_size.y - rays[incr.x] * 4);
 		if (height < 0)
 			height = 0;
 		incr.y = data->screen_size.y / 2 - height / 2;
 		while (incr.y != data->screen_size.y / 2 + height / 2)
 		{
-			if (rays[incr.x] > MAX_DISTANCE)
-				color = 0xFF000000;
-			else
-				color = 0xFF000000 + (int)(255 * (1 - rays[incr.x] / MAX_DISTANCE));
+			color = ft_pixel(255, 255, 255, 255);
+			// if (incr.y < 0 || incr.y >= data->screen_size.y)
+			// 	color = ft_pixel(0, 0, 0, 0);
 			mlx_put_pixel(data->camera_view, incr.x, incr.y, color);
 			incr.y++;
 		}
@@ -50,11 +49,11 @@ static float	single_raycast(t_data *data, double angle)
 	ray = data->player_pos;
 	while (!is_wall(data, ray))
 	{
-		ray.x += cos(deg_to_rad(angle)) * PLAYER_SPEED;
-		ray.y += sin(deg_to_rad(angle)) * PLAYER_SPEED;
+		ray.x += cos(deg_to_rad(angle)) * RAY_SPEED;
+		ray.y += sin(deg_to_rad(angle)) * RAY_SPEED;
 		distance++;
 	}
-	return (distance  * cos(deg_to_rad(angle - data->player_dir)));
+	return (distance * cos(deg_to_rad(angle - data->player_dir)));
 }
 
 static double	find_angle(t_data *data, int i)
@@ -79,7 +78,7 @@ void	new_raycast(t_data *data)
 		i++;
 		// printf("rays[%d] = %f\n", i, rays[i]);
 	}
-	//printf("rays[%d] = %f\n", data->screen_size.x / 2, rays[data->screen_size.x / 2]);
+	// printf("rays[%d] = %f\n", data->screen_size.x / 2, rays[data->screen_size.x / 2]);
 	draw_rays(data, rays);
 	free(rays);
 }

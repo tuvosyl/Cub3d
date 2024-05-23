@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:39:04 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/21 19:16:30 by valentins        ###   ########.fr       */
+/*   Updated: 2024/05/23 15:59:31 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,14 @@ void	extract_value_condition(t_data *data)
 		free_data(data);
 		exit_msg("Error\n↪\tTexture path or color not found\n");
 	}
+}
+
+double	deg_to_rad(double deg)
+{
+	return (deg * M_PI / 180.0);
+}
+
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
 }

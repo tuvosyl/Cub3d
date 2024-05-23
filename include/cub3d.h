@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/21 19:01:38 by valentins        ###   ########.fr       */
+/*   Updated: 2024/05/23 11:30:27 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@
 # define FLOOR 	 4
 # define CEILING 5
 
-# define PLAYER_SPEED 0.05
+# define PLAYER_SPEED 0.05f
 # define PLAYER_ROTATION_SPEED 4.5f
 # define FOV 90
+# define TEXTURE_SIZE 64
 
 // Custom defines
 # define WHITESPACES "\t\n\v\f\r "
@@ -131,7 +132,7 @@ void	delete_texture(t_data *data);
 void	free_data(t_data *data);
 void	exit_msg(char *msg);
 void	tcheck_file(t_data *data);
-int 	is_wall(t_data *data, t_2float pos);
+bool 	is_wall(t_data *data, t_2float pos);
 int		is_sprite(t_data *data, t_2float pos);
 void	start_game(t_data *data);
 void	events(void *data);

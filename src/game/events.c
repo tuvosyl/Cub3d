@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 17:29:26 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:53:53 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static bool	window_resized(t_data *data)
 	{
 		previous_screen_size.x = data->screen_size.x;
 		previous_screen_size.y = data->screen_size.y;
+		mlx_delete_image(data->mlx, data->camera_view);
+		data->camera_view = mlx_new_image(data->mlx, data->screen_size.x, data->screen_size.y);
 		return (true);
 	}
 	return (false);

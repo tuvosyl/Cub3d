@@ -1,1 +1,5 @@
 Heavy work on the raycaster
+
+Pour draw les murs, il faut creer une image vide de la taille de la fenetre (gerer le resize)
+ et dessiner les murs dessus.
+J'ai pas encore de solution fiable pour les textures

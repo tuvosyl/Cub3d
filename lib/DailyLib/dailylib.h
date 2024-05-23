@@ -6,12 +6,12 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:59:32 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 13:18:09 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:02:52 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DAILILIB_H
-# define DAILILIB_H
+#ifndef DAILYLIB_H
+# define DAILYLIB_H
 
 /*###########################################################################*/
 /*                                  Defines                                  */
@@ -87,9 +87,9 @@ typedef struct s_4float
 
 typedef struct s_3RBG
 {
-	int r;
-	int g;
-	int b;
+	int		r;
+	int		g;
+	int		b;
 }	t_3RGB;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 11:44:04 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:12:13 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	new_raycast(t_data *data)
 	{
 		rays[i] = single_raycast(data, find_angle(data, i));
 		i++;
-		//printf("rays[%d] = %f\n", i, rays[i]);
+		// printf("rays[%d] = %f\n", i, rays[i]);
 	}
 	//printf("rays[%d] = %f\n", data->screen_size.x / 2, rays[data->screen_size.x / 2]);
 	draw_rays(data, rays);

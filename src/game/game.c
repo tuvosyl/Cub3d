@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/21 19:22:10 by valentins        ###   ########.fr       */
+/*   Updated: 2024/05/23 12:53:01 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	resize(int width, int height, void *params)
 		printf("Window | width: %d, height: %d\n", width, height);
 }
 
+// minimap (bonus)
 static void	print_map(t_data *data)
 {
 	int	i;
@@ -59,6 +60,7 @@ void	start_game(t_data *data)
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2,
 		data->screen_size.y / 2);
+	data->camera_view = mlx_new_image(data->mlx, data->screen_size.x, data->screen_size.y);
 	// tests :
 	print_map(data);
 	mlx_image_to_window(data->mlx, data->images.north_image, 0, 0);

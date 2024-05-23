@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/23 11:30:27 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:56:45 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 
 typedef struct s_map
 {
-	char 		**map;
+	char		**map;
 	int			fd;
 	char		*map_path;
 	t_2float	*collision_map;
@@ -82,8 +82,8 @@ typedef struct s_textures
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*west_texture;
 	mlx_texture_t	*east_texture;
-	t_3RGB		floor_color;
-	t_3RGB		ceiling_color;
+	t_3RGB			floor_color;
+	t_3RGB			ceiling_color;
 }	t_textures;
 
 typedef struct s_image
@@ -100,21 +100,21 @@ typedef struct s_texture_path
 	char	*south_texture;
 	char	*west_texture;
 	char	*east_texture;
-} t_texture_path;
+}	t_texture_path;
 
 // Main Structure
 typedef struct s_data
 {
 	mlx_t			*mlx;
 	t_map			map;
-	t_textures 		textures;
+	t_textures		textures;
 	t_texture_path	texture_path;
 	t_image			images;
 	t_2float		player_pos;
 	t_2int			screen_size;
 	float			player_dir;
 	mlx_image_t		*player_img;
-	mlx_image_t		*walls_img;
+	mlx_image_t		*camera_view;
 }	t_data;
 
 /*###########################################################################*/
@@ -126,13 +126,13 @@ int		tcheck_max_rgb_value(char *temp);
 void	printf_debug(t_data *data);
 void	read_lenght(t_data *data);
 void	table_to_map(t_data *data);
-void 	load_png(t_data *data);
+void	load_png(t_data *data);
 void	texture_to_image(t_data *data);
 void	delete_texture(t_data *data);
 void	free_data(t_data *data);
 void	exit_msg(char *msg);
 void	tcheck_file(t_data *data);
-bool 	is_wall(t_data *data, t_2float pos);
+bool	is_wall(t_data *data, t_2float pos);
 int		is_sprite(t_data *data, t_2float pos);
 void	start_game(t_data *data);
 void	events(void *data);

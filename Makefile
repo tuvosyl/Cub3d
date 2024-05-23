@@ -76,7 +76,13 @@ test:
 
 norminette:
 	@clear
-	@sh ~/better_norminette.sh
+	@echo "Header files norm :\n"
+	@norminette include/
+	@echo "\nSrc files norm : \n"
+	@norminette src/
+	@echo "\nLib files norm (except MLX42) :\n"
+	@norminette lib/DailyLib/
+	@norminette lib/libft/
 
 debug: fclean
 	@make -s DEBUG=1 all

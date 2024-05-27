@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/23 16:11:16 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:52:19 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define FOV 90.0f
 # define TEXTURE_SIZE 64
 # define MAX_DISTANCE 250
+# define FPS 60
 
 // Custom defines
 # define WHITESPACES "\t\n\v\f\r "

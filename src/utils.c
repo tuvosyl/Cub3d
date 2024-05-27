@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:39:04 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/23 15:59:31 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:46:07 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ double	deg_to_rad(double deg)
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
     return (r << 24 | g << 16 | b << 8 | a);
+}
+
+size_t	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	if (tv.tv_sec < 0 || tv.tv_usec < 0)
+		exit (EXIT_FAILURE);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

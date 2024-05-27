@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 16:04:24 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:06:36 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static bool	camera_controls(t_data *data)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		data->player_dir -= PLAYER_ROTATION_SPEED;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		data->player_dir += PLAYER_ROTATION_SPEED;
+		data->player_dir += PLAYER_ROTATION_SPEED ;
 	mlx_get_mouse_pos(data->mlx, &mouse_pos.x, &mouse_pos.y);
 	if (mouse_pos.x > data->screen_size.x / 2 + 10)
 		data->player_dir += (mouse_pos.x - data->screen_size.x / 2) / 10;
@@ -51,6 +51,10 @@ static bool	camera_controls(t_data *data)
 		return (false);
 	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2,
 		data->screen_size.y / 2);
+	while (data->player_dir < 0)
+		data->player_dir += 360;
+	while (data->player_dir >= 360)
+		data->player_dir -= 360;
 	return (true);
 }
 

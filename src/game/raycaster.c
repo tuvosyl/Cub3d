@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 16:52:44 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:43:39 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,33 @@ static void	draw_rays(t_data *data, float *rays)
 	mlx_image_to_window(data->mlx, data->camera_view, 0, 0);
 }
 
-static float	single_raycast(t_data *data, double angle, int ray_num)
+// to change
+static float	single_raycast(t_data *data, float angle, int ray_num)
 {
 	t_2float	ray;
 	float		distance;
 
 	distance = 0;
 	ray = data->player_pos;
+	(void)ray_num;
 	while (!is_wall(data, ray))
 	{
 		ray.x += cos(deg_to_rad(angle)) * RAY_SPEED;
 		ray.y += sin(deg_to_rad(angle)) * RAY_SPEED;
 		distance++;
 	}
-	return (distance);
+	return (distance * cos(deg_to_rad(data->player_dir - angle)));
 }
 
-static double	find_angle(t_data *data, int i)
+static float	find_angle(t_data *data, int i)
 {
-	double	angle;
+	float	angle;
 
 	angle = data->player_dir - (FOV / 2) + (i * FOV / data->screen_size.x);
+	if (angle < 0)
+		angle += 360;
+	if (angle > 360)
+		angle -= 360;
 	return (angle);
 }
 

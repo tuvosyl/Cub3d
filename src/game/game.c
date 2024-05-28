@@ -6,13 +6,13 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/28 13:29:12 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/28 13:47:15 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	resize(int width, int height, void *params)
+static void	resize(int width, int height, void *params)
 {
 	t_data	*data;
 
@@ -24,7 +24,7 @@ void	resize(int width, int height, void *params)
 }
 
 // minimap (bonus)
-static void	print_map(t_data *data)
+void	print_map(t_data *data)
 {
 	int	i;
 	int	j;
@@ -45,7 +45,7 @@ static void	print_map(t_data *data)
 		i++;
 	}
 	data->player_img = mlx_texture_to_image(data->mlx,
-			mlx_load_png("./maps/textures/player.png"));
+			mlx_load_png("./maps/textures/miguel_2.png"));
 	mlx_image_to_window(data->mlx,
 		data->player_img, data->player_pos.x * 2, data->player_pos.y * 2);
 }
@@ -62,7 +62,7 @@ void	start_game(t_data *data)
 		data->screen_size.y / 2);
 	data->camera_view = mlx_new_image(data->mlx,
 			data->screen_size.x, data->screen_size.y);
-	// tests :
+	// tests ;
 	print_map(data);
 	// ---
 	mlx_resize_hook(data->mlx, resize, data);

@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/28 13:27:53 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/28 13:45:22 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	events(void *params)
 	bool			do_raycast;
 
 	data = (t_data *)params;
+	//print_map(data);
 	do_raycast = false;
 	if (player_controls(data))
 		do_raycast = true;

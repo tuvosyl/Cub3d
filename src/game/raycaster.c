@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/28 13:28:45 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/28 15:00:02 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ static void	draw_rays(t_data *data, float *rays)
 		incr.y = data->screen_size.y / 2 - height / 2;
 		while (incr.y != data->screen_size.y / 2 + height / 2)
 		{
-			color = ft_pixel(255, 255, 255, 255);
+			color = ft_pixel(109, 37, 190, 255);
 			mlx_put_pixel(data->camera_view, incr.x, incr.y, color);
+			
 			incr.y++;
 		}
 		incr.x++;
 	}
 	mlx_image_to_window(data->mlx, data->camera_view, 0, 0);
+	//fog()
 }
 
 // to change
@@ -62,11 +64,7 @@ static float	find_angle(t_data *data, int i)
 	float	angle;
 
 	angle = data->player_dir - (FOV / 2) + (i * FOV / data->screen_size.x);
-	if (angle < 0)
-		angle += 360;
-	if (angle > 360)
-		angle -= 360;
-	return (angle);
+	return (round_deg(angle));
 }
 
 // Raycasting function called when the player or the camera moves

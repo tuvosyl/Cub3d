@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:39:04 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/27 12:46:07 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:03:42 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,12 @@ size_t	get_time(void)
 	if (tv.tv_sec < 0 || tv.tv_usec < 0)
 		exit (EXIT_FAILURE);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+float	round_deg(float	angle)
+{
+	while (angle < 0)
+		angle += 360;
+	while (angle >= 360)
+		angle -= 360;
+	return (angle);
 }

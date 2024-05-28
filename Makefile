@@ -1,11 +1,11 @@
 # Makefile informations
 NAME 		= cub3D
-CC 			= cc
+CC 			= clang
 RM			= rm -f
 
 # Compilation flags
 CFLAGS 		= -g -Wall -Wextra -Werror
-LIBFTFLAGS	= -L./lib/libft -lft
+LIBFTFLAGS	= -L./lib/libft -lft -fPIE
 MLXFLAGS	= ./lib/MLX42/build/libmlx42.a -I./MLX42/include -ldl -lglfw -pthread -lm
 
 # Lib informations

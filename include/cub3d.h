@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/27 14:27:32 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:07:52 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 # define PLAYER_SPEED 0.05f
 # define RAY_SPEED 0.05f
-# define PLAYER_ROTATION_SPEED 4.0f
+# define PLAYER_ROTATION_SPEED 2.0f
 # define FOV 90.0f
 # define TEXTURE_SIZE 64
 # define MAX_DISTANCE 250
@@ -150,5 +150,6 @@ void	new_raycast(t_data *data);
 void	extract_value_condition(t_data *data);
 int		extract_value(t_data *data);
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+float	round_deg(float	angle);
 
 #endif

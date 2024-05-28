@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 11:35:02 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:23:55 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ bool	is_wall(t_data *data, t_2float pos)
 
 	x = (int)pos.x;
 	y = (int)pos.y;
-	if (x <= 0 || y <= 0 || x >= data->map.map_size.x || y >= data->map.map_size.y)
+	if (x <= 0 || y <= 0 || x >= data->map.map_size.x
+		|| y >= data->map.map_size.y)
 		return (1);
 	return (data->map.map[y][x] == '1');
 }

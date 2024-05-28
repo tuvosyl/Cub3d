@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/27 14:43:39 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:28:45 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	draw_rays(t_data *data, float *rays)
 
 	incr.x = 0;
 	mlx_delete_image(data->mlx, data->camera_view);
-	data->camera_view = mlx_new_image(data->mlx, data->screen_size.x, data->screen_size.y);
+	data->camera_view = mlx_new_image(data->mlx,
+			data->screen_size.x, data->screen_size.y);
 	while (incr.x != data->screen_size.x)
 	{
 		height = (int)(data->screen_size.y - rays[incr.x] * 3);
@@ -80,9 +81,7 @@ void	new_raycast(t_data *data)
 	{
 		rays[i] = single_raycast(data, find_angle(data, i), i);
 		i++;
-		// printf("rays[%d] = %f\n", i, rays[i]);
 	}
-	// printf("rays[%d] = %f\n", data->screen_size.x / 2, rays[data->screen_size.x / 2]);
 	draw_rays(data, rays);
 	free(rays);
 }

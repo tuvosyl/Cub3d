@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/23 16:03:53 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:29:12 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	start_game(t_data *data)
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2,
 		data->screen_size.y / 2);
-	data->camera_view = mlx_new_image(data->mlx, data->screen_size.x, data->screen_size.y);
+	data->camera_view = mlx_new_image(data->mlx,
+			data->screen_size.x, data->screen_size.y);
 	// tests :
 	print_map(data);
 	// ---

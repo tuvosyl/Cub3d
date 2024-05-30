@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:39:04 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/28 13:27:30 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/30 11:14:38 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,11 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-size_t	get_time(void)
+float	round_deg(float angle)
 {
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	if (tv.tv_sec < 0 || tv.tv_usec < 0)
-		exit (EXIT_FAILURE);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	while (angle < 0)
+		angle += 360;
+	while (angle >= 360)
+		angle -= 360;
+	return (angle);
 }

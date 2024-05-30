@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/28 13:40:45 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/30 10:16:38 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define PLAYER_ROTATION_SPEED 2.0f
 # define FOV 90.0f
 # define TEXTURE_SIZE 64
-# define MAX_DISTANCE 250
+# define MAX_DISTANCE 250.0f
 # define FPS 60
 
 // Custom defines
@@ -70,6 +70,7 @@
 /*                                Structures                                 */
 /*###########################################################################*/
 
+// map data
 typedef struct s_map
 {
 	char		**map;
@@ -106,6 +107,16 @@ typedef struct s_texture_path
 	char	*east_texture;
 }	t_texture_path;
 
+// Used for raycaster, 
+// use defines for wall_type,
+// texture_pos is in percent
+typedef struct s_raywall
+{
+	float	distance;
+	short	wall_type;
+	short	texture_pos;
+}	t_raywall;
+
 // Main Structure
 typedef struct s_data
 {
@@ -119,6 +130,7 @@ typedef struct s_data
 	float			player_dir;
 	mlx_image_t		*player_img;
 	mlx_image_t		*camera_view;
+	double			last_frame;
 }	t_data;
 
 /*###########################################################################*/

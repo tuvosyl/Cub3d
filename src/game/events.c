@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/28 13:45:22 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/30 10:27:53 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,12 @@ void	events(void *params)
 {
 	t_data			*data;
 	bool			do_raycast;
+	double			frame_time;
 
 	data = (t_data *)params;
-	//print_map(data);
+	frame_time = mlx_get_time() - data->last_frame;
+	if (frame_time < 1 / FPS)
+		return ;
 	do_raycast = false;
 	if (player_controls(data))
 		do_raycast = true;

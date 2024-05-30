@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/30 13:23:25 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:25:54 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ static t_raywall	single_raycast(t_data *data, int raynum)
 
 	raywall.distance = 0;
 	raynum = raynum - data->screen_size.x / 2;
-	ray.x = data->player_pos.x - cos(deg_to_rad(data->player_dir - 90)) * 0.5 - raynum * (1.0 / data->screen_size.x);
-	ray.y = data->player_pos.y - sin(deg_to_rad(data->player_dir - 90)) * 0.5 - raynum * (1.0 / data->screen_size.x);
-	printf("ray.x = %f, ray.y = %f\n", ray.x, ray.y);
+	ray.x = data->player_pos.x + cos(deg_to_rad(data->player_dir + 90)) * (FOV / 100) * raynum * (1.5f / data->screen_size.x);
+	ray.y = data->player_pos.y + sin(deg_to_rad(data->player_dir + 90)) * (FOV / 100) * raynum * (1.5f / data->screen_size.x);
 	while (!is_wall(data, ray))
 	{
-		ray.x += cos(deg_to_rad(data->player_dir)) * RAY_SPEED;
-		ray.y += sin(deg_to_rad(data->player_dir)) * RAY_SPEED;
+		ray.x += cos(deg_to_rad(data->player_dir + raynum / 100.0f)) * RAY_SPEED;
+		ray.y += sin(deg_to_rad(data->player_dir + raynum / 100.0f)) * RAY_SPEED;
 		raywall.distance += RAY_SPEED;
 	}
 	return (raywall);

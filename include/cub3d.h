@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/30 10:16:38 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:43:18 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void	find_map_size_and_player_pos(t_data *data);
 void	new_raycast(t_data *data);
 void	extract_value_condition(t_data *data);
 int		extract_value(t_data *data);
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-float	round_deg(float	angle);
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+float	round_deg(float angle);
 
 #endif

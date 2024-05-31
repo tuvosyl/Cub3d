@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/31 11:34:07 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:38:38 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ static t_raywall	single_raycast(t_data *data, int raynum)
 		ray.y += sin(deg_to_rad(data->player_dir)) * RAY_SPEED;
 		raywall.distance += RAY_SPEED;
 	}
-    raywall.wall_type = check_wall(data, ray, raywall);
+    raywall.wall_type = check_wall_type(data, ray, raywall);
+    raywall.texture_pos = check_texture_pos(data, ray, raywall);
+    printf("raywall.texture_pos: %d\n", raywall.texture_pos);
 	return (raywall);
 }
 

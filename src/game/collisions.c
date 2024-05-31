@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/31 11:31:06 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:45:27 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	is_wall(t_data *data, t_2float pos)
 }
 
 // Check wall type
-short	check_wall(t_data *data, t_2float ray, t_raywall raywall)
+short	check_wall_type(t_data *data, t_2float ray, t_raywall raywall)
 {
 	t_2int		old_wall;
 
@@ -55,4 +55,23 @@ short	check_wall(t_data *data, t_2float ray, t_raywall raywall)
 		else
 			return (NORTH);
 	}
+}
+
+// Check texture position
+short	check_texture_pos(t_data *data, t_2float ray, t_raywall raywall)
+{
+	t_2int		old_wall;
+
+	old_wall.x = (int)ray.x;
+	old_wall.y = (int)ray.y;
+	while (is_wall(data, ray))
+	{
+		ray.x -= cos(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
+		ray.y -= sin(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
+		raywall.distance -= RAY_SPEED / 5;
+	}
+	if (old_wall.x != (int)ray.x)
+		return (100 - ((int)(ray.y * 100) % 100));
+	else
+		return ((int)(ray.x * 100) % 100);
 }

@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/31 11:32:26 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:38:55 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void	extract_value_condition(t_data *data);
 int		extract_value(t_data *data);
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 float	round_deg(float angle);
-short	check_wall(t_data *data, t_2float ray, t_raywall raywall);
+short	check_wall_type(t_data *data, t_2float ray, t_raywall raywall);
+short	check_texture_pos(t_data *data, t_2float ray, t_raywall raywall);
 
 #endif

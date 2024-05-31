@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/30 15:24:12 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/05/31 11:34:07 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,15 @@ static t_raywall	single_raycast(t_data *data, int raynum)
 
 	raywall.distance = 0;
 	raynum = raynum - data->screen_size.x / 2;
-	ray.x = data->player_pos.x + cos(deg_to_rad(data->player_dir + 90)) * (FOV / 100) * raynum * (1.5f / data->screen_size.x);
-	ray.y = data->player_pos.y + sin(deg_to_rad(data->player_dir + 90)) * (FOV / 100) * raynum * (1.5f / data->screen_size.x);
+	ray.x = data->player_pos.x + cos(deg_to_rad(data->player_dir + 90)) * (FOV / 100) * raynum * (2.5f / data->screen_size.x);
+	ray.y = data->player_pos.y + sin(deg_to_rad(data->player_dir + 90)) * (FOV / 100) * raynum * (2.5f / data->screen_size.x);
 	while (!is_wall(data, ray))
 	{
 		ray.x += cos(deg_to_rad(data->player_dir)) * RAY_SPEED;
 		ray.y += sin(deg_to_rad(data->player_dir)) * RAY_SPEED;
 		raywall.distance += RAY_SPEED;
 	}
+    raywall.wall_type = check_wall(data, ray, raywall);
 	return (raywall);
 }
 

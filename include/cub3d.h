@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/30 13:43:18 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:32:26 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@
 # endif
 
 // Cub3D defines
-# define NORTH   0
-# define SOUTH   1
-# define WEST    2
-# define EAST    3
-# define FLOOR 	 4
-# define CEILING 5
+# define NORTH   1
+# define SOUTH   2
+# define WEST    3
+# define EAST    4
 
 # define PLAYER_SPEED 0.05f
 # define RAY_SPEED 0.05f
@@ -150,7 +148,6 @@ void	free_data(t_data *data);
 void	exit_msg(char *msg);
 void	tcheck_file(t_data *data);
 bool	is_wall(t_data *data, t_2float pos);
-int		is_sprite(t_data *data, t_2float pos);
 void	start_game(t_data *data);
 void	events(void *data);
 double	deg_to_rad(double deg);
@@ -164,5 +161,6 @@ void	extract_value_condition(t_data *data);
 int		extract_value(t_data *data);
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 float	round_deg(float angle);
+short	check_wall(t_data *data, t_2float ray, t_raywall raywall);
 
 #endif

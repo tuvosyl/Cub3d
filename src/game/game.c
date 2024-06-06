@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/28 13:47:15 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/04 13:59:00 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	print_map(t_data *data)
 		i++;
 	}
 	data->player_img = mlx_texture_to_image(data->mlx,
-			mlx_load_png("./maps/textures/miguel_2.png"));
+			mlx_load_png("./maps/textures/player.png"));
 	mlx_image_to_window(data->mlx,
 		data->player_img, data->player_pos.x * 2, data->player_pos.y * 2);
 }

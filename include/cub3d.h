@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/28 13:40:45 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/06 10:16:31 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,16 @@
 # endif
 
 // Cub3D defines
-# define NORTH   0
-# define SOUTH   1
-# define WEST    2
-# define EAST    3
-# define FLOOR 	 4
-# define CEILING 5
+# define NORTH   1
+# define SOUTH   2
+# define WEST    3
+# define EAST    4
 
 # define PLAYER_SPEED 0.05f
 # define RAY_SPEED 0.05f
 # define PLAYER_ROTATION_SPEED 2.0f
 # define FOV 90.0f
 # define TEXTURE_SIZE 64
-# define MAX_DISTANCE 250
 # define FPS 60
 
 // Custom defines
@@ -70,6 +67,7 @@
 /*                                Structures                                 */
 /*###########################################################################*/
 
+// map data
 typedef struct s_map
 {
 	char		**map;
@@ -106,6 +104,16 @@ typedef struct s_texture_path
 	char	*east_texture;
 }	t_texture_path;
 
+// Used for raycaster, 
+// use defines for wall_type,
+// texture_pos is in percent
+typedef struct s_raywall
+{
+	float	distance;
+	short	wall_type;
+	short	texture_pos;
+}	t_raywall;
+
 // Main Structure
 typedef struct s_data
 {
@@ -119,6 +127,7 @@ typedef struct s_data
 	float			player_dir;
 	mlx_image_t		*player_img;
 	mlx_image_t		*camera_view;
+	double			last_frame;
 }	t_data;
 
 /*###########################################################################*/
@@ -138,7 +147,6 @@ void	free_data(t_data *data);
 void	exit_msg(char *msg);
 void	tcheck_file(t_data *data);
 bool	is_wall(t_data *data, t_2float pos);
-int		is_sprite(t_data *data, t_2float pos);
 void	start_game(t_data *data);
 void	events(void *data);
 double	deg_to_rad(double deg);
@@ -150,7 +158,10 @@ void	find_map_size_and_player_pos(t_data *data);
 void	new_raycast(t_data *data);
 void	extract_value_condition(t_data *data);
 int		extract_value(t_data *data);
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-float	round_deg(float	angle);
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+float	round_deg(float angle);
+short	check_wall_type(t_data *data, t_2float ray, t_raywall raywall);
+short	check_texture_pos(t_data *data, t_2float ray, t_raywall raywall);
+double	fabs(double x);
 
 #endif

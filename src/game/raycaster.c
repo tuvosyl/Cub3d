@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/28 15:00:02 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/06 10:25:35 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	draw_rays(t_data *data, float *rays)
+void	draw_rays(t_data *data, t_raywall *rays)
 {
 	int		height;
 	int		color;
@@ -24,39 +24,45 @@ static void	draw_rays(t_data *data, float *rays)
 			data->screen_size.x, data->screen_size.y);
 	while (incr.x != data->screen_size.x)
 	{
-		height = (int)(data->screen_size.y - rays[incr.x] * 3);
+		height = (data->screen_size.y * 0.5f) / tan(FOV * 0.5f) / rays[incr.x].distance * 5;
 		if (height < 0)
 			height = 0;
-		incr.y = data->screen_size.y / 2 - height / 2;
+		if (height > data->screen_size.y)
+			height = data->screen_size.y;
+		incr.y = (data->screen_size.y / 2 - height / 2);
 		while (incr.y != data->screen_size.y / 2 + height / 2)
 		{
 			color = ft_pixel(109, 37, 190, 255);
 			mlx_put_pixel(data->camera_view, incr.x, incr.y, color);
-			
 			incr.y++;
 		}
 		incr.x++;
 	}
 	mlx_image_to_window(data->mlx, data->camera_view, 0, 0);
-	//fog()
 }
 
-// to change
-static float	single_raycast(t_data *data, float angle, int ray_num)
+static t_raywall	single_raycast(t_data *data, float angle)
 {
-	t_2float	ray;
-	float		distance;
+	t_2float	ray_pos;
+	t_raywall	ray;
 
-	distance = 0;
-	ray = data->player_pos;
-	(void)ray_num;
-	while (!is_wall(data, ray))
+	(ray_pos) = data->player_pos;
+	while (!is_wall(data, ray_pos))
 	{
-		ray.x += cos(deg_to_rad(angle)) * RAY_SPEED;
-		ray.y += sin(deg_to_rad(angle)) * RAY_SPEED;
-		distance++;
+		ray_pos.x += cos(deg_to_rad(angle)) * RAY_SPEED;
+		ray_pos.y += sin(deg_to_rad(angle)) * RAY_SPEED;
 	}
-	return (distance * cos(deg_to_rad(data->player_dir - angle)));
+	while (is_wall(data, ray_pos))
+	{
+		ray_pos.x -= cos(deg_to_rad(angle)) * (RAY_SPEED / 5);
+		ray_pos.y -= sin(deg_to_rad(angle)) * (RAY_SPEED / 5);
+	}
+	ray.distance = sqrt(pow(data->player_pos.x - ray_pos.x, 2)
+			+ pow(data->player_pos.y - ray_pos.y, 2));
+	ray.distance = ray.distance * cos(deg_to_rad(data->player_dir - angle));
+	if (ray.distance < 0.5f)
+		ray.distance = 0.5f;
+	return (ray);
 }
 
 static float	find_angle(t_data *data, int i)
@@ -70,14 +76,14 @@ static float	find_angle(t_data *data, int i)
 // Raycasting function called when the player or the camera moves
 void	new_raycast(t_data *data)
 {
-	float	*rays;
-	int		i;
+	t_raywall	*rays;
+	int			i;
 
 	i = 0;
-	rays = malloc(sizeof(float) * data->screen_size.x);
+	rays = malloc(sizeof(t_raywall) * data->screen_size.x);
 	while (i != data->screen_size.x)
 	{
-		rays[i] = single_raycast(data, find_angle(data, i), i);
+		rays[i] = single_raycast(data, find_angle(data, i));
 		i++;
 	}
 	draw_rays(data, rays);

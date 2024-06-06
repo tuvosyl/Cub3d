@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/30 14:34:27 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/06 14:55:30 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-#
-void miguel(t_data *data, char *str)
-{
-	int i;
-
-	i = 0;
-	mlx_image_t *miguel;
-	miguel = mlx_texture_to_image(data->mlx, mlx_load_png(str));
-	while (i < 20)
-	{
-		mlx_image_to_window(data->mlx, miguel, rand() % 1000 -800, rand() % 1000 -800);
-		i++;
-	}
-}
-
 
 // return true if the player has moved
 static bool	player_controls(t_data *data)
@@ -43,10 +28,6 @@ static bool	player_controls(t_data *data)
 		has_moved = true;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_O) && move_right(data) != 2)
-		miguel(data, "maps/textures/miguel.png");
-	if (mlx_is_key_down(data->mlx, MLX_KEY_M) && move_right(data) != 2)
-		miguel(data, "maps/textures/1i9xkxfondx11.png");
 	return (has_moved);
 }
 
@@ -113,3 +94,4 @@ void	events(void *params)
 	data->player_img->instances[0].y = data->player_pos.y * 32;
 	// ---
 }
+

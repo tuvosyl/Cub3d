@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/06 15:19:09 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/06 15:23:55 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ static t_raywall	single_raycast(t_data *data, float angle)
 	ray.distance = sqrt(pow(data->player_pos.x - ray_pos.x, 2)
 			+ pow(data->player_pos.y - ray_pos.y, 2));
 	ray.distance = ray.distance * cos(deg_to_rad(data->player_dir - angle));
-	if (ray.distance < 0.5f)
-		ray.distance = 0.5f;
+	if (ray.distance < 0.1f)
+		ray.distance = 0.1f;
 	return (ray);
 }
 

@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/06 15:23:55 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/06 17:11:47 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,35 @@ void	convert_to_hex(uint32_t *texture_map, uint8_t *pixels)
 //     // Afficher l'image de la vue de la caméra à la fenêtre
 //     mlx_image_to_window(data->mlx, data->camera_view, 0, 0);
 // }
+
+uint8_t *texture_pixel(t_data *data, t_raywall *rays)
+{
+	if (rays->wall_type == EAST)
+		return (data->textures.east_texture->pixels);
+	else if (rays->wall_type == WEST)
+		return (data->textures.west_texture->pixels);
+	else if (rays->wall_type == NORTH)
+		return (data->textures.north_texture->pixels);
+	else if (rays->wall_type == SOUTH)
+		return (data->textures.south_texture->pixels);
+	return (NULL);
+}
 void	draw_rays(t_data *data, t_raywall *rays)
 {
 	int		height;
 	uint32_t *texture;
     uint32_t color;
+	uint8_t *pixels;
 	t_2int	incr;
 
 	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
 	incr.x = 0;
+	pixels = texture_pixel(data, rays);
+	
 	mlx_delete_image(data->mlx, data->camera_view);
 	data->camera_view = mlx_new_image(data->mlx,
 			data->screen_size.x, data->screen_size.y);
-	convert_to_hex(texture, data->textures.north_texture->pixels);
+	convert_to_hex(texture, pixels);
 	while (incr.x != data->screen_size.x)
 	{
 		height = (data->screen_size.y * 0.5f) / tan(FOV * 0.5f) / rays[incr.x].distance * 5;
@@ -92,8 +108,8 @@ void	draw_rays(t_data *data, t_raywall *rays)
 		{
 			// float fog_factor = 1.0 - (rays[incr.x].distance / MAX_DISTANCE * 10);
 			int texture_y = ((incr.y - (data->screen_size.y / 2 - height / 2)) * TEXTURE_SIZE) / height;  // Supposons que la hauteur de la texture soit de 64 pixels
-            texture_y = fmin(fmax(texture_y, 0), 63); 
-			color = texture[TEXTURE_SIZE * texture_y + (rays[incr.x].texture_pos % TEXTURE_SIZE)];
+            //texture_y = fmin(fmax(texture_y, 0), 63); 
+			color = texture[TEXTURE_SIZE * texture_y + (rays[incr.x].texture_pos)];
 			mlx_put_pixel(data->camera_view, incr.x, incr.y, color);
 			incr.y++;
 		}
@@ -121,10 +137,14 @@ static t_raywall	single_raycast(t_data *data, float angle)
 	ray.distance = sqrt(pow(data->player_pos.x - ray_pos.x, 2)
 			+ pow(data->player_pos.y - ray_pos.y, 2));
 	ray.distance = ray.distance * cos(deg_to_rad(data->player_dir - angle));
-	if (ray.distance < 0.1f)
-		ray.distance = 0.1f;
+	if (ray.distance < 0.5f)
+		ray.distance = 0.5f;
+	ray.wall_type = check_wall_type(data, ray_pos, ray);
+	ray.texture_pos = check_texture_pos(data, ray_pos, ray);
 	return (ray);
 }
+
+
 
 static float	find_angle(t_data *data, int i)
 {

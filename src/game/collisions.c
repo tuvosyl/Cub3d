@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/31 11:45:27 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:07:01 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ short	check_texture_pos(t_data *data, t_2float ray, t_raywall raywall)
 		raywall.distance -= RAY_SPEED / 5;
 	}
 	if (old_wall.x != (int)ray.x)
-		return (100 - ((int)(ray.y * 100) % 100));
+		return (TEXTURE_SIZE - ((int)(ray.y * TEXTURE_SIZE) % TEXTURE_SIZE));
 	else
-		return ((int)(ray.x * 100) % 100);
+		return ((int)(ray.x * TEXTURE_SIZE) % TEXTURE_SIZE);
 }

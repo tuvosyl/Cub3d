@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 16:45:21 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/07 17:25:54 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	start_game(t_data *data)
 			data->screen_size.y, "Cub3D", true);
 	if (!data->mlx)
 		return ;
-	texture_to_image(data);
+	//texture_to_image(data);
 	get_texture_pixel(data);
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 17:32:40 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/05/21 18:33:59 by valentins        ###   ########.fr       */
+/*   Updated: 2024/06/07 17:10:11 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,6 @@ void	load_png(t_data *data)
 	load_png_2(data);
 }
 
-void	texture_to_image(t_data *data)
-{
-	data->images.north_image
-		= mlx_texture_to_image(data->mlx, data->textures.north_texture);
-	if (!data->images.north_image)
-		error(data);
-	data->images.south_image
-		= mlx_texture_to_image(data->mlx, data->textures.south_texture);
-	if (!data->images.south_image)
-		error(data);
-	data->images.west_image
-		= mlx_texture_to_image(data->mlx, data->textures.west_texture);
-	if (!data->images.west_image)
-		error(data);
-	data->images.east_image
-		= mlx_texture_to_image(data->mlx, data->textures.east_texture);
-	if (!data->images.east_image)
-		error(data);
-}
-
 void	delete_texture(t_data *data)
 {
 	if (data->textures.north_texture)
@@ -104,12 +84,4 @@ void	delete_texture(t_data *data)
 		mlx_delete_texture(data->textures.south_texture);
 	if (data->textures.west_texture)
 		mlx_delete_texture(data->textures.west_texture);
-	if (data->images.north_image)
-		mlx_delete_image(data->mlx, data->images.north_image);
-	if (data->images.east_image)
-		mlx_delete_image(data->mlx, data->images.east_image);
-	if (data->images.south_image)
-		mlx_delete_image(data->mlx, data->images.south_image);
-	if (data->images.west_image)
-		mlx_delete_image(data->mlx, data->images.west_image);
 }

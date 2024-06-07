@@ -1,6 +1,6 @@
-NO ./maps/textures/wall.png
+NO ./maps/textures/Purple_Wall.png
 SO ./maps/textures/wall.png
-WE ./maps/textures/wall.png
+WE ./maps/textures/Purple_Background.png
 EA ./maps/textures/wall.png
 
 

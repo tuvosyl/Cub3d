@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/30 10:19:18 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:32:04 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	print_map(t_data *data)
 			if (data->map.map[i][j] == '1')
 				mlx_image_to_window(data->mlx,
 					mlx_texture_to_image(data->mlx,
-						mlx_load_png("./maps/textures/sky.png")),
-					j * 32, i * 32);
+						mlx_load_png("./maps/textures/minimap_wall.png")),
+					j * 16, i * 16);
 			j++;
 		}
 		i++;

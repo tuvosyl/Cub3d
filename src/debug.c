@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 09:59:51 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/21 18:25:02 by valentins        ###   ########.fr       */
+/*   Updated: 2024/06/07 10:36:50 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	printf_wall_type(short wall_type)
+{
+	if (wall_type == NORTH)
+		printf("\033[1;36mNORTH\033[0m\n");
+	else if (wall_type == SOUTH)
+		printf("\033[1;35mSOUTH\033[0m\n");
+	else if (wall_type == WEST)
+		printf("\033[1;32mWEST\033[0m\n");
+	else if (wall_type == EAST)
+		printf("\033[1;33mEAST\033[0m\n");
+}
 
 void	printf_debug(t_data *data)
 {

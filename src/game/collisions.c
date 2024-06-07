@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 09:55:13 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:54:38 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,25 @@ bool	is_wall(t_data *data, t_2float pos)
 }
 
 // Check wall type
-short	check_wall_type(t_data *data, t_2float ray_pos)
+short	check_wall_type(t_2float ray_pos, float angle)
 {
-	ray_pos.x += cos(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
-	ray_pos.y += sin(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
-	if (ray_pos.x - (int)ray_pos.x > ray_pos.y - (int)ray_pos.y)
+	t_2float	wall_pos;
+
+	wall_pos.x = ray_pos.x + cos(deg_to_rad(angle)) * (RAY_SPEED / 5);
+	wall_pos.y = ray_pos.y + sin(deg_to_rad(angle)) * (RAY_SPEED / 5);
+	if ((int)wall_pos.x == (int)ray_pos.x)
 	{
-		if (data->player_dir > 180 && data->player_dir < 360)
-			return (WEST);
-		else
-			return (EAST);
-	}
-	else
-	{
-		if (data->player_dir > 90 && data->player_dir < 270)
+		if (wall_pos.y < ray_pos.y)
 			return (NORTH);
 		else
 			return (SOUTH);
+	}
+	else
+	{
+		if (wall_pos.x < ray_pos.x)
+			return (WEST);
+		else
+			return (EAST);
 	}
 }
 

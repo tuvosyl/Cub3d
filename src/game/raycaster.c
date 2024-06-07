@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 09:53:37 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:55:17 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,14 @@ static t_raywall	single_raycast(t_data *data, float angle)
 	ray.distance = ray.distance * cos(deg_to_rad(data->player_dir - angle));
 	if (ray.distance < 0.5f)
 		ray.distance = 0.5f;
-	ray.wall_type = check_wall_type(data, ray_pos);
+	ray.wall_type = check_wall_type(ray_pos, angle);
 	ray.texture_pos = check_texture_pos(ray_pos, ray);
-	printf("ray.wall_type = %d\n", ray.wall_type);
-	printf("ray.texture_pos = %d\n", ray.texture_pos);
+	if (DEBUG)
+	{
+		printf("ray.distance = %f\n", ray.distance);
+		printf_wall_type(ray.wall_type);
+		printf("ray.texture_pos = %d\n", ray.texture_pos);
+	}
 	return (ray);
 }
 

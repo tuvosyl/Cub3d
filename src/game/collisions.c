@@ -3,28 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 14:10:13 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/07 17:39:36 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 // Check collision with a wall
-bool	is_wall(t_data *data, t_2float pos)
+bool is_wall(t_data *data, t_2float pos)
 {
-	int		x;
-	int		y;
-
-	x = (int)pos.x;
-	y = (int)pos.y;
-	if (x <= 0 || y <= 0 || x >= data->map.map_size.x
-		|| y >= data->map.map_size.y || data->map.map[y][x] == '1')
-	{
+	if (pos.x <= 0 || pos.y <= 0
+		|| pos.x >= data->map.map_size.x
+		|| pos.y >= data->map.map_size.y)
 		return (true);
-	}
+	if (data->map.map[(int)pos.y][(int)pos.x] == '1')
+		return (true);
 	return (false);
 }
 

@@ -1,8 +1,1 @@
-Heavy work on the raycaster
-
-je suis pas sur que le raycaster fonctionne a 100% parce que je checkais que celui du milieu pour tester
- normalement ca devrait marcher mais pour vraiment voir il faut faire la fonction draw_rays()
-
-Pour draw les murs, il faut creer une image vide de la taille de la fenetre (gerer le resize)
- et dessiner les murs dessus.
-J'ai pas encore de solution fiable pour les textures
+modifier is_wall pour pas trop s'approcher des murs

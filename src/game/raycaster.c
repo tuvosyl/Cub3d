@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/06 17:11:47 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/07 09:53:37 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,16 @@ void	draw_rays(t_data *data, t_raywall *rays)
 	while (incr.x != data->screen_size.x)
 	{
 		height = (data->screen_size.y * 0.5f) / tan(FOV * 0.5f) / rays[incr.x].distance * 5;
-		if (height < 0)
-			height = 0;
-		if (height > data->screen_size.y)
-			height = data->screen_size.y;
 		incr.y = (data->screen_size.y / 2 - height / 2);
 		while (incr.y != data->screen_size.y / 2 + height / 2)
 		{
+			if (incr.y < 0 || incr.y >= data->screen_size.y)
+			{
+				incr.y++;
+				continue;
+			}
 			// float fog_factor = 1.0 - (rays[incr.x].distance / MAX_DISTANCE * 10);
-			int texture_y = ((incr.y - (data->screen_size.y / 2 - height / 2)) * TEXTURE_SIZE) / height;  // Supposons que la hauteur de la texture soit de 64 pixels
+			int texture_y = ((incr.y - (data->screen_size.y / 2 - height / 2)) * TEXTURE_SIZE) / height;
             //texture_y = fmin(fmax(texture_y, 0), 63); 
 			color = texture[TEXTURE_SIZE * texture_y + (rays[incr.x].texture_pos)];
 			mlx_put_pixel(data->camera_view, incr.x, incr.y, color);
@@ -139,8 +140,10 @@ static t_raywall	single_raycast(t_data *data, float angle)
 	ray.distance = ray.distance * cos(deg_to_rad(data->player_dir - angle));
 	if (ray.distance < 0.5f)
 		ray.distance = 0.5f;
-	ray.wall_type = check_wall_type(data, ray_pos, ray);
-	ray.texture_pos = check_texture_pos(data, ray_pos, ray);
+	ray.wall_type = check_wall_type(data, ray_pos);
+	ray.texture_pos = check_texture_pos(ray_pos, ray);
+	printf("ray.wall_type = %d\n", ray.wall_type);
+	printf("ray.texture_pos = %d\n", ray.texture_pos);
 	return (ray);
 }
 

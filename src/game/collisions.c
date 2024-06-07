@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/06 16:07:01 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/07 09:55:13 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,49 +29,35 @@ bool	is_wall(t_data *data, t_2float pos)
 }
 
 // Check wall type
-short	check_wall_type(t_data *data, t_2float ray, t_raywall raywall)
+short	check_wall_type(t_data *data, t_2float ray_pos)
 {
-	t_2int		old_wall;
-
-	old_wall.x = (int)ray.x;
-	old_wall.y = (int)ray.y;
-    while (is_wall(data, ray))
-    {
-        ray.x -= cos(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
-        ray.y -= sin(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
-        raywall.distance -= RAY_SPEED / 5;
-    }
-	if (old_wall.x != (int)ray.x)
+	ray_pos.x += cos(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
+	ray_pos.y += sin(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
+	if (ray_pos.x - (int)ray_pos.x > ray_pos.y - (int)ray_pos.y)
 	{
-		if (cos(deg_to_rad(data->player_dir)) > 0)
-			return (EAST);
-		else
+		if (data->player_dir > 180 && data->player_dir < 360)
 			return (WEST);
+		else
+			return (EAST);
 	}
 	else
 	{
-		if (sin(deg_to_rad(data->player_dir)) > 0)
-			return (SOUTH);
-		else
+		if (data->player_dir > 90 && data->player_dir < 270)
 			return (NORTH);
+		else
+			return (SOUTH);
 	}
 }
 
 // Check texture position
-short	check_texture_pos(t_data *data, t_2float ray, t_raywall raywall)
+short	check_texture_pos(t_2float ray, t_raywall raywall)
 {
-	t_2int		old_wall;
-
-	old_wall.x = (int)ray.x;
-	old_wall.y = (int)ray.y;
-	while (is_wall(data, ray))
-	{
-		ray.x -= cos(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
-		ray.y -= sin(deg_to_rad(data->player_dir)) * RAY_SPEED / 5;
-		raywall.distance -= RAY_SPEED / 5;
-	}
-	if (old_wall.x != (int)ray.x)
-		return (TEXTURE_SIZE - ((int)(ray.y * TEXTURE_SIZE) % TEXTURE_SIZE));
+	if (raywall.wall_type == NORTH)
+		return ((int)(ray.x * 100) % TEXTURE_SIZE);
+	else if (raywall.wall_type == EAST)
+		return ((int)(ray.y * 100) % TEXTURE_SIZE);
+	else if (raywall.wall_type == SOUTH)
+		return (TEXTURE_SIZE - ((int)(ray.x * 100) % TEXTURE_SIZE) - 1);
 	else
-		return ((int)(ray.x * TEXTURE_SIZE) % TEXTURE_SIZE);
+		return (TEXTURE_SIZE - ((int)(ray.y * 100) % TEXTURE_SIZE) - 1);
 }

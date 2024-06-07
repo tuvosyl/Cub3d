@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/07 17:16:38 by vsoltys          ###   ########.fr       */
+=======
+/*   Updated: 2024/06/07 17:00:39 by mgallais         ###   ########.fr       */
+>>>>>>> 1f07719fa9f62c8313a694b4f786b7c92e4cdeba
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,5 +165,6 @@ short	check_texture_pos(t_2float ray, t_raywall raywall);
 void	printf_wall_type(short wall_type);
 uint8_t *texture_pixel(t_data *data, t_raywall *rays);
 void	convert_to_hex(uint32_t *texture_map, uint8_t *pixels);
+void	background(t_data *data);
 
 #endif

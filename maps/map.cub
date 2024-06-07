@@ -4,8 +4,8 @@ WE ./maps/textures/Purple_Background.png
 EA ./maps/textures/wall.png
 
 
-F 220,100,0
-C 255,30,1
+F 88,88,88
+C 40,40,40
 
         1111111111111111111111111
         1000000000110000000000001

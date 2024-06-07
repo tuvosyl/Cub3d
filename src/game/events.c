@@ -6,7 +6,11 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/07 17:26:07 by vsoltys          ###   ########.fr       */
+=======
+/*   Updated: 2024/06/07 16:46:05 by mgallais         ###   ########.fr       */
+>>>>>>> 1f07719fa9f62c8313a694b4f786b7c92e4cdeba
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +96,7 @@ void	events(void *params)
 		mlx_delete_image(data->mlx, data->camera_view);
 		data->camera_view = mlx_new_image(data->mlx,
 				data->screen_size.x, data->screen_size.y);
+		background(data);
 		new_raycast(data);
 		// minimap(data);
 		mlx_image_to_window(data->mlx, data->camera_view, 0, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/07 10:40:49 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:43:00 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@ typedef struct s_textures
 	mlx_texture_t	*east_texture;
 	t_3RGB			floor_color;
 	t_3RGB			ceiling_color;
+	uint32_t		*north_pixel;
+	uint32_t		*south_pixel;
+	uint32_t		*west_pixel;
+	uint32_t		*east_pixel;
 }	t_textures;
 
 typedef struct s_image
@@ -164,5 +168,7 @@ float	round_deg(float angle);
 short	check_wall_type(t_2float ray, float angle);
 short	check_texture_pos(t_2float ray, t_raywall raywall);
 void	printf_wall_type(short wall_type);
+uint8_t *texture_pixel(t_data *data, t_raywall *rays);
+void	convert_to_hex(uint32_t *texture_map, uint8_t *pixels);
 
 #endif

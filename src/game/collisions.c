@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 10:54:38 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:10:13 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ short	check_wall_type(t_2float ray_pos, float angle)
 short	check_texture_pos(t_2float ray, t_raywall raywall)
 {
 	if (raywall.wall_type == NORTH)
-		return ((int)(ray.x * 100) % TEXTURE_SIZE);
+		return ((int)(ray.x * 64) % TEXTURE_SIZE);
 	else if (raywall.wall_type == EAST)
-		return ((int)(ray.y * 100) % TEXTURE_SIZE);
+		return ((int)(ray.y * 64) % TEXTURE_SIZE);
 	else if (raywall.wall_type == SOUTH)
-		return (TEXTURE_SIZE - ((int)(ray.x * 100) % TEXTURE_SIZE) - 1);
+		return (TEXTURE_SIZE - ((int)(ray.x * 64) % TEXTURE_SIZE) - 1);
 	else
-		return (TEXTURE_SIZE - ((int)(ray.y * 100) % TEXTURE_SIZE) - 1);
+		return (TEXTURE_SIZE - ((int)(ray.y * 64) % TEXTURE_SIZE) - 1);
 }

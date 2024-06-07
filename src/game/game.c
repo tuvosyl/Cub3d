@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 11:32:04 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:45:21 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,25 @@ void	print_map(t_data *data)
 	mlx_image_to_window(data->mlx,
 		data->player_img, data->player_pos.x * 2, data->player_pos.y * 2);
 }
+void get_texture_pixel(t_data *data)
+{
+	uint32_t *texture;
+	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
+	convert_to_hex(texture, data->textures.east_texture->pixels);
+	data->textures.east_pixel = texture;
 
+	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
+	convert_to_hex(texture, data->textures.north_texture->pixels);
+	data->textures.north_pixel = texture;
+
+	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
+	convert_to_hex(texture, data->textures.south_texture->pixels);
+	data->textures.south_pixel = texture;
+
+	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
+	convert_to_hex(texture, data->textures.west_texture->pixels);
+	data->textures.west_pixel = texture;
+}
 void	start_game(t_data *data)
 {
 	data->mlx = mlx_init(data->screen_size.x,
@@ -57,6 +75,7 @@ void	start_game(t_data *data)
 	if (!data->mlx)
 		return ;
 	texture_to_image(data);
+	get_texture_pixel(data);
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2,
 		data->screen_size.y / 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 16:38:34 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:48:19 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,10 @@ void	draw_rays(t_data *data, t_raywall *rays)
 	int		height;
 	uint32_t *texture;
     uint32_t color;
-	uint8_t *pixels;
 	t_2int	incr;
 
-	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
 	incr.x = 0;
-	pixels = texture_pixel(data, rays);
-	
 
-	convert_to_hex(texture, pixels);
 	while (incr.x != data->screen_size.x)
 	{
 		height = (data->screen_size.y * 0.5f) / tan(FOV * 0.5f) / rays[incr.x].distance * 5;
@@ -66,6 +61,14 @@ void	draw_rays(t_data *data, t_raywall *rays)
 				incr.y++;
 				continue;
 			}
+			if (rays[incr.x].wall_type == EAST)
+				texture = data->textures.east_pixel;
+			else if (rays[incr.x].wall_type == WEST)
+				texture = data->textures.west_pixel;
+			else if (rays[incr.x].wall_type == NORTH)
+				texture = data->textures.north_pixel;
+			else if (rays[incr.x].wall_type == SOUTH)
+				texture = data->textures.south_pixel;
 			//float fog_factor = 1.0 - (rays[incr.x].distance / MAX_DISTANCE * 10);
 			int texture_y = ((incr.y - (data->screen_size.y / 2 - height / 2)) * TEXTURE_SIZE) / height;
             //texture_y = fmin(fmax(texture_y, 0), 63); 

@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 11:33:42 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:39:17 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,14 @@ void	events(void *params)
 	if (window_resized(data))
 		do_raycast = true;
 	if (do_raycast)
+	{
+		mlx_delete_image(data->mlx, data->camera_view);
+		data->camera_view = mlx_new_image(data->mlx,
+				data->screen_size.x, data->screen_size.y);
 		new_raycast(data);
-	// minimap(data);
+		// minimap(data);
+		mlx_image_to_window(data->mlx, data->camera_view, 0, 0);
+	}
 	// tests :
 	data->player_img->instances[0].x = data->player_pos.x * 16;
 	data->player_img->instances[0].y = data->player_pos.y * 16;

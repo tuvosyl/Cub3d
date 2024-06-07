@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 14:09:07 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/07 16:38:34 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ void	draw_rays(t_data *data, t_raywall *rays)
 	incr.x = 0;
 	pixels = texture_pixel(data, rays);
 	
-	mlx_delete_image(data->mlx, data->camera_view);
-	data->camera_view = mlx_new_image(data->mlx,
-			data->screen_size.x, data->screen_size.y);
+
 	convert_to_hex(texture, pixels);
 	while (incr.x != data->screen_size.x)
 	{
@@ -77,7 +75,6 @@ void	draw_rays(t_data *data, t_raywall *rays)
 		}
 		incr.x++;
 	}
-	mlx_image_to_window(data->mlx, data->camera_view, 0, 0);
 }
 
 static t_raywall	single_raycast(t_data *data, float angle)

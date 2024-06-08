@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:01:00 by valentins         #+#    #+#             */
-/*   Updated: 2024/05/21 19:05:08 by valentins        ###   ########.fr       */
+/*   Updated: 2024/06/09 00:55:45 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@
 char	*extract_texture_path(char *str)
 {
 	int		i;
+	int 	j;
 	char	*return_str;
-
-	i = 3;
+	j = 2;
+	while (str[j] == ' ')
+		j++;
+	i = j;
 	while (str[i] && str[i] != '\n')
 		i++;
-	return_str = malloc(sizeof(char) * i - 3 + 1);
-	i = 3;
+	return_str = malloc(sizeof(char) * i + 1 - j);
+	i = j;
 	while (str[i] && str[i] != '\n')
 	{
-		return_str[i - 3] = str[i];
+		return_str[i - j] = str[i];
 		i++;
 	}
-	return_str[i - 3] = '\0';
+	return_str[i - j] = '\0';
 	return (return_str);
 }
 

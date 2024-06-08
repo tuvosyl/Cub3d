@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 17:32:40 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/07 17:30:57 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/09 00:42:49 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	load_png_2(t_data *data)
 void	load_png(t_data *data)
 {
 	int	fd;
-
 	fd = open(data->texture_path.north_texture, O_RDONLY);
 	if (fd < 0)
 	{

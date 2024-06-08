@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:06:15 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/21 19:03:12 by valentins        ###   ########.fr       */
+/*   Updated: 2024/06/09 00:48:58 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	parsing(t_data *data, int argc, char **argv)
 		return (ft_printf("Error\n↪\tWrong number of arguments\n"), exit (1));
 	data->map.map_path = argv[1];
 	extract_value(data);
+	printf("Textures:%s\n", data->texture_path.north_texture);
 	if (data->textures.ceiling_color.r == -1
 		|| data->textures.ceiling_color.g == -1
 		|| data->textures.ceiling_color.b == -1)

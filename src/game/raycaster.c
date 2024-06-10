@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 16:48:19 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/10 09:19:30 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ static t_raywall	single_raycast(t_data *data, float angle)
 	t_raywall	ray;
 
 	(ray_pos) = data->player_pos;
-	while (!is_wall(data, ray_pos))
+	while (!is_wall(data, ray_pos, false))
 	{
 		ray_pos.x += cos(deg_to_rad(angle)) * RAY_SPEED;
 		ray_pos.y += sin(deg_to_rad(angle)) * RAY_SPEED;
 	}
-	while (is_wall(data, ray_pos))
+	while (is_wall(data, ray_pos, false))
 	{
 		ray_pos.x -= cos(deg_to_rad(angle)) * (RAY_SPEED / 5);
 		ray_pos.y -= sin(deg_to_rad(angle)) * (RAY_SPEED / 5);

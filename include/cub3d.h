@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/07 17:30:45 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/10 09:18:32 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	delete_texture(t_data *data);
 void	free_data(t_data *data);
 void	exit_msg(char *msg);
 void	tcheck_file(t_data *data);
-bool	is_wall(t_data *data, t_2float pos);
+bool	is_wall(t_data *data, t_2float pos, bool is_player);
 void	start_game(t_data *data);
 void	events(void *data);
 double	deg_to_rad(double deg);

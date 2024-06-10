@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/06/10 14:37:06 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/10 14:58:00 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,3 +98,21 @@ void	table_to_map(t_data *data)
 	}
 	exit(1);
 }
+
+// void	table_to_map(t_data *data)
+// {
+// 	int i;
+// 	int j;
+
+// 	i = 0;
+// 	while(data->map.map[i])
+// 		i++;
+// 	i--;
+// 	while(i != 0)
+// 	{
+// 		j = 0;
+// 		i--;
+		
+// 	}
+// 	exit(1);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table_to_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentins <valentins@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/05/21 19:15:58 by valentins        ###   ########.fr       */
+/*   Updated: 2024/06/10 14:37:06 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ void	table_to_map_3(t_data *data, t_4int i)
 			i.g++;
 		}
 		else
+		{
+			printf("test");
 			return (table_to_map_2(data, i.l, i.r + 1));
+		}
 	}
 }
 
@@ -83,7 +86,7 @@ void	table_to_map(t_data *data)
 	i.l = i.r;
 	while (i.r != 0)
 	{
-		if (!data->map.map[i.r][i.g])
+		if (!data->map.map[i.r])
 			return (table_to_map_2(data, i.l, i.r + 1));
 		if (data->map.map[i.r][i.g] == '\n')
 			return (table_to_map_2(data, i.l, i.r + 1));

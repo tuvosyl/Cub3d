@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:06:15 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/09 00:48:58 by val              ###   ########.fr       */
+/*   Updated: 2024/06/10 14:26:41 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,67 @@
 #include <fcntl.h>
 #include <stdio.h>
 
+int all_around_0(char **map, int i, int j)
+{
+	if (i == 0 || j == 0 || i == (int)ft_strlen(map[i]) - 1 || j == (int)ft_strlen(map[i]) - 1)
+		return(printf("map not close\n"), 1);
+	if ((map[i][j + 1] != '1' && map[i][j + 1] != '0') || (map[i][j - 1] != '1' && map[i][j - 1] != '0'))
+		return(printf("map not close\n"), 1);
+	if ((map[i + 1][j] != '1' && map[i + 1][j] != '0') || (map[i + 1][j] != '1' && map[i + 1][j] != '0'))
+		return(printf("map not close\n"), 1);
+	return (0);
+}
+
+void find_player(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (data->map.map[i])
+	{
+		j = 0;
+		while (data->map.map[i][j])
+		{
+			if (data->map.map[i][j] == 'W' || data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' || data->map.map[i][j] == 'E')
+			{
+				data->map.player_start_pos.x = i;
+				data->map.player_start_pos.y = j;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int map_close(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	find_player(data);
+	data->map.map[data->map.player_start_pos.x][data->map.player_start_pos.y] = '0';
+	while (data->map.map[i])
+	{
+		j = 0;
+		while(data->map.map[i][j])
+		{
+			if (data->map.map[i][j] != '0' && data->map.map[i][j] != '1' && data->map.map[i][j] != ' ' && data->map.map[i][j] != '\n')
+				return (printf("map[%i][%i] = \'%c\'\n", i, j, data->map.map[i][j]), 1);
+			if (data->map.map[i][j] == '0')
+			{
+				if (all_around_0(data->map.map, i, j))
+					return (printf("map[%i][%i] = \'%c\'\n", i, j, data->map.map[i][j]), 1);
+			}
+			j++;
+		}
+		i++;
+	}
+	data->map.map[data->map.player_start_pos.x][data->map.player_start_pos.y] = data->map.player_start;
+	return (0);
+}
 void	parsing(t_data *data, int argc, char **argv)
 {
 	if (argc != 2)
@@ -30,6 +91,8 @@ void	parsing(t_data *data, int argc, char **argv)
 		return (ft_printf("Error\n↪\tFloor color not valid\n"), exit (1));
 	read_lenght(data);
 	table_to_map(data);
+	if(map_close(data) == 1)
+		exit_msg("Error\n↪\tMap not closed\n");
 	find_map_size_and_player_pos(data);
 	if (data->map.player_start == '+')
 		return (ft_printf("Error\n↪\tPlayer position not found\n"), exit (1));

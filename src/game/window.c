@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:42:14 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 17:13:02 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:30:34 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,40 @@ void	background(t_data *data)
 		}
 		pos.y++;
 	}
+}
+
+static void	put_rectangle(mlx_image_t *img, t_2int pos, t_2int size, int color)
+{
+	t_2int	incr;
+
+	incr.y = 0;
+	while (incr.y < size.y)
+	{
+		incr.x = 0;
+		while (incr.x < size.x)
+		{
+			mlx_put_pixel(img, pos.x + incr.x, pos.y + incr.y, color);
+			incr.x++;
+		}
+		incr.y++;
+	}
+}
+
+void	minimap(t_data *data)
+{
+	t_2int	incr;
+
+	incr = (t_2int){0, 0};
+	while (incr.y < data->map.map_size.y)
+	{
+		incr.x = 0;
+		while (incr.x < data->map.map_size.x)
+		{
+			if (data->map.map[incr.y][incr.x] == '1')
+				put_rectangle(data->camera_view, (t_2int){incr.x * 16, incr.y * 16}, (t_2int){16, 16}, 0xAA08AAFF);
+			incr.x++;
+		}
+		incr.y++;
+	}
+	put_rectangle(data->camera_view, (t_2int){(int)(data->player_pos.x * 16), (int)(data->player_pos.y * 16)}, (t_2int){2, 2}, 0xFF0202FF);
 }

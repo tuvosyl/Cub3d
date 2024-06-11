@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/10 13:38:59 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/11 12:17:23 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ float	round_deg(float angle);
 short	check_wall_type(t_2float ray, float angle);
 short	check_texture_pos(t_2float ray, t_raywall raywall);
 void	printf_wall_type(short wall_type);
-uint8_t *texture_pixel(t_data *data, t_raywall *rays);
+uint8_t	*texture_pixel(t_data *data, t_raywall *rays);
 void	convert_to_hex(uint32_t *texture_map, uint8_t *pixels);
 void	background(t_data *data);
 

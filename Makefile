@@ -50,8 +50,8 @@ LIBFT:
 MLX42:
 	@if [ ! -f $(MLX42EXEC) ]; \
 	then printf "\033[1;35m\n\t| Starting MLX42 compilation\n\e[0m" \
-	&& cmake -S ./lib/MLX42 -B ./lib/MLX42/build \
-	&& cmake --build ./lib/MLX42/build -j4 \
+	&& cmake -S ./lib/MLX42 -B ./lib/MLX42/build > /dev/null \
+	&& cmake --build ./lib/MLX42/build -j4 > /dev/null \
 	&& make -s -C ./lib/MLX42/build > /dev/null \
 	&& printf "\033[1;92m\t|  >>> MLX42 compiled                                       \n\n\033[0m"; fi
 

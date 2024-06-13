@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:01:00 by valentins         #+#    #+#             */
-/*   Updated: 2024/06/13 18:59:41 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/14 00:46:30 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ t_3RGB	extract_rgb(t_data *data, char *str, t_3RGB return_value)
 		{
 			temp = extract_rgb_2(str, &i, &which_value);
 			if (which_value == 1)
-				return_value.r = tcheck_max_rgb_value(temp);
+				return_value.r = tcheck_max_rgb_value(data, temp);
 			else if (which_value == 2)
-				return_value.g = tcheck_max_rgb_value(temp);
+				return_value.g = tcheck_max_rgb_value(data, temp);
 			else if (which_value == 3)
-				return_value.b = tcheck_max_rgb_value(temp);
+				return_value.b = tcheck_max_rgb_value(data, temp);
 			free(temp);
 		}
 		else

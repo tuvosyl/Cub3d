@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/13 18:54:21 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/14 00:44:19 by val              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ typedef struct s_data
 /*###########################################################################*/
 
 void	parsing(t_data *data, int argc, char **argv);
-int		tcheck_max_rgb_value(char *temp);
+int		tcheck_max_rgb_value(t_data *data, char *temp);
 void	print_map(t_data *data);
 void	printf_debug(t_data *data);
 void	read_lenght(t_data *data);

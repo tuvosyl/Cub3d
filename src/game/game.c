@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/11 12:16:34 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/13 19:10:32 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,24 @@ static void	resize(int width, int height, void *params)
 		printf("Window | width: %d, height: %d\n", width, height);
 }
 
-void get_texture_pixel(t_data *data)
+void	get_texture_pixel(t_data *data)
 {
-	uint32_t *texture;
+	uint32_t	*texture;
+
 	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
 	convert_to_hex(texture, data->textures.east_texture->pixels);
 	data->textures.east_pixel = texture;
-
 	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
 	convert_to_hex(texture, data->textures.north_texture->pixels);
 	data->textures.north_pixel = texture;
-
 	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
 	convert_to_hex(texture, data->textures.south_texture->pixels);
 	data->textures.south_pixel = texture;
-
 	texture = malloc(sizeof(uint32_t) * TEXTURE_SIZE * TEXTURE_SIZE);
 	convert_to_hex(texture, data->textures.west_texture->pixels);
 	data->textures.west_pixel = texture;
 }
+
 void	start_game(t_data *data)
 {
 	data->mlx = mlx_init(data->screen_size.x,

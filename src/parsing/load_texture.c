@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 17:32:40 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/09 00:42:49 by val              ###   ########.fr       */
+/*   Updated: 2024/06/13 18:56:08 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	load_png_2(t_data *data)
 
 	fd = open(data->texture_path.east_texture, O_RDONLY);
 	if (fd < 0)
-	{
-		free_data(data);
-		exit_msg("cant open east texture");
-	}
+		exit_msg(data, "cant open east texture", 1);
 	close (fd);
 	data->textures.north_texture
 		= mlx_load_png(data->texture_path.north_texture);
@@ -49,26 +46,18 @@ void	load_png_2(t_data *data)
 void	load_png(t_data *data)
 {
 	int	fd;
+
 	fd = open(data->texture_path.north_texture, O_RDONLY);
 	if (fd < 0)
-	{
-		free_data(data);
-		exit_msg("cant open north texture");
-	}
+		exit_msg(data, "cant open north texture", 1);
 	close (fd);
 	fd = open(data->texture_path.south_texture, O_RDONLY);
 	if (fd < 0)
-	{
-		free_data(data);
-		exit_msg("cant open south texture");
-	}
+		exit_msg(data, "cant open south texture", 1);
 	close (fd);
 	fd = open(data->texture_path.west_texture, O_RDONLY);
 	if (fd < 0)
-	{
-		free_data(data);
-		exit_msg("cant open west texture");
-	}
+		exit_msg(data, "cant open west texture", 1);
 	close (fd);
 	load_png_2(data);
 }

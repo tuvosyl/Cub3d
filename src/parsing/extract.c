@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:01:00 by valentins         #+#    #+#             */
-/*   Updated: 2024/06/09 00:55:45 by val              ###   ########.fr       */
+/*   Updated: 2024/06/13 18:59:41 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 char	*extract_texture_path(char *str)
 {
 	int		i;
-	int 	j;
+	int		j;
 	char	*return_str;
+
 	j = 2;
 	while (str[j] == ' ')
 		j++;
@@ -62,7 +63,7 @@ char	*extract_rgb_2(char *str, int *i, int *which_value)
 	return (temp);
 }
 
-t_3RGB	extract_rgb(char *str, t_3RGB return_value)
+t_3RGB	extract_rgb(t_data *data, char *str, t_3RGB return_value)
 {
 	int		i;
 	int		which_value;
@@ -73,7 +74,7 @@ t_3RGB	extract_rgb(char *str, t_3RGB return_value)
 	while (str[i] && str[i] != '\n' && which_value != 3 && str[i] != '-')
 	{
 		if (str[i] == '-')
-			exit_msg("Error\n↪\tRGB value is negative");
+			exit_msg(data, "Error\n↪\tRGB value is negative", 0);
 		if (ft_isdigit(str[i]) == 1)
 		{
 			temp = extract_rgb_2(str, &i, &which_value);
@@ -107,10 +108,10 @@ void	extract_value_2(t_data *data, char *str)
 		data->texture_path.east_texture = extract_texture_path(str);
 	if (str[0] == 'F')
 		data->textures.floor_color
-			= extract_rgb(str, data->textures.floor_color);
+			= extract_rgb(data, str, data->textures.floor_color);
 	if (str[0] == 'C')
-		data->textures.ceiling_color
-			= extract_rgb(str, data->textures.ceiling_color);
+		data->textures.ceiling_color = extract_rgb(data, str,
+				data->textures.ceiling_color);
 }
 
 int	extract_value(t_data *data)

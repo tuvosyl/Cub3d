@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:39:04 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/09 00:41:33 by val              ###   ########.fr       */
+/*   Updated: 2024/06/13 18:54:32 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	exit_msg(char *msg)
+void	exit_msg(t_data *data, char *msg, int status)
 {
 	ft_printf("%s\n", msg);
+	if (status)
+		free_data(data);
 	exit(1);
 }
 
@@ -31,8 +33,7 @@ void	extract_value_condition(t_data *data)
 		|| data->textures.floor_color.g == -1
 		|| data->textures.floor_color.b == -1)
 	{
-		free_data(data);
-		exit_msg("Error\n↪\tTexture path or color not found\n");
+		exit_msg(data, "Error\n↪\tTexture path or color not found\n", 1);
 	}
 }
 

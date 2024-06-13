@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 09:59:51 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/11 17:32:36 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/07 10:36:50 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,15 @@ void	printf_wall_type(short wall_type)
 
 void	printf_debug(t_data *data)
 {
+	int	i;
 
+	i = 0;
+	ft_printf("\033[0;35mmap :\033[0m\n");
+	while (data->map.map[i])
+	{
+		ft_printf("\t\t%s", data->map.map[i]);
+		i++;
+	}
 	ft_printf("\n\033[0;35mmap.player_start : \033[0m%c\n\n",
 		data->map.player_start);
 	ft_printf("\033[0;35mmap.celling : \033[0m%d,%d,%d\n",

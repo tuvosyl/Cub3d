@@ -3,33 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/10 09:19:30 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/13 19:09:41 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	convert_to_hex(uint32_t *texture_map, uint8_t *pixels)
-{
-	int	i;
-	t_4int color;
-
-	i = 0;
-	while (i < TEXTURE_SIZE * TEXTURE_SIZE)
-	{
-		color.r = pixels[i * 4];
-		color.g = pixels[i * 4 + 1];
-		color.b = pixels[i * 4 + 2];
-		color.l = pixels[i * 4 + 3];
-		texture_map[i] = ft_pixel(color.r, color.g, color.b, color.l);
-		i++;
-	}
-}
-
-uint8_t *texture_pixel(t_data *data, t_raywall *rays)
+uint8_t	*texture_pixel(t_data *data, t_raywall *rays)
 {
 	if (rays->wall_type == EAST)
 		return (data->textures.east_texture->pixels);
@@ -41,25 +24,27 @@ uint8_t *texture_pixel(t_data *data, t_raywall *rays)
 		return (data->textures.south_texture->pixels);
 	return (NULL);
 }
+
 void	draw_rays(t_data *data, t_raywall *rays)
 {
-	int		height;
-	uint32_t *texture;
-    uint32_t color;
-	t_2int	incr;
+	int			height;
+	uint32_t	*texture;
+	uint32_t	color;
+	t_2int		incr;
+	int			texture_y;
 
 	incr.x = 0;
-
 	while (incr.x != data->screen_size.x)
 	{
-		height = (data->screen_size.y * 0.5f) / tan(FOV * 0.5f) / rays[incr.x].distance * 5;
+		height = (data->screen_size.y * 0.5f)
+			/ tan(FOV * 0.5f) / rays[incr.x].distance * 5;
 		incr.y = (data->screen_size.y / 2 - height / 2);
 		while (incr.y != data->screen_size.y / 2 + height / 2)
 		{
 			if (incr.y < 0 || incr.y >= data->screen_size.y)
 			{
 				incr.y++;
-				continue;
+				continue ;
 			}
 			if (rays[incr.x].wall_type == EAST)
 				texture = data->textures.east_pixel;
@@ -69,10 +54,10 @@ void	draw_rays(t_data *data, t_raywall *rays)
 				texture = data->textures.north_pixel;
 			else if (rays[incr.x].wall_type == SOUTH)
 				texture = data->textures.south_pixel;
-			//float fog_factor = 1.0 - (rays[incr.x].distance / MAX_DISTANCE * 10);
-			int texture_y = ((incr.y - (data->screen_size.y / 2 - height / 2)) * TEXTURE_SIZE) / height;
-            //texture_y = fmin(fmax(texture_y, 0), 63); 
-			color = texture[TEXTURE_SIZE * texture_y + (rays[incr.x].texture_pos)];
+			texture_y = ((incr.y - (data->screen_size.y
+							/ 2 - height / 2)) * TEXTURE_SIZE) / height;
+			color = texture[TEXTURE_SIZE
+				* texture_y + (rays[incr.x].texture_pos)];
 			mlx_put_pixel(data->camera_view, incr.x, incr.y, color);
 			incr.y++;
 		}
@@ -103,16 +88,8 @@ static t_raywall	single_raycast(t_data *data, float angle)
 		ray.distance = 0.5f;
 	ray.wall_type = check_wall_type(ray_pos, angle);
 	ray.texture_pos = check_texture_pos(ray_pos, ray);
-	if (DEBUG)
-	{
-		printf("ray.distance = %f\n", ray.distance);
-		printf_wall_type(ray.wall_type);
-		printf("ray.texture_pos = %d\n", ray.texture_pos);
-	}
 	return (ray);
 }
-
-
 
 static float	find_angle(t_data *data, int i)
 {
@@ -138,4 +115,3 @@ void	new_raycast(t_data *data)
 	draw_rays(data, rays);
 	free(rays);
 }
-

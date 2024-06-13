@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:55:39 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/11 18:00:45 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/13 18:26:48 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	init_all(t_data *data)
 	data->texture_path.south_texture = NULL;
 	data->texture_path.west_texture = NULL;
 	data->texture_path.east_texture = NULL;
+	data->textures.north_pixel = NULL;
+	data->textures.south_pixel = NULL;
+	data->textures.west_pixel = NULL;
+	data->textures.east_pixel = NULL;
+	data->map.start_pos.x = -1;
+	data->map.start_pos.y = -1;
 	data->map.map = NULL;
 	data->textures.ceiling_color.r = -1;
 	data->textures.floor_color.r = -1;
@@ -36,7 +42,6 @@ int	main(int argc, char **argv)
 
 	init_all(&data);
 	parsing(&data, argc, argv);
-	
 	load_png(&data);
 	if (DEBUG)
 		printf_debug(&data);

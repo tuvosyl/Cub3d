@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/13 14:51:40 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/13 18:54:21 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_map
 	char		*map_path;
 	t_2int		map_size;
 	char		player_start;
-	t_2int		player_start_pos;
+	t_2int		start_pos;
 }	t_map;
 
 typedef struct s_textures
@@ -138,7 +138,7 @@ void	table_to_map(t_data *data);
 void	load_png(t_data *data);
 void	delete_texture(t_data *data);
 void	free_data(t_data *data);
-void	exit_msg(char *msg);
+void	exit_msg(t_data *data, char *msg, int status);
 void	tcheck_file(t_data *data);
 bool	is_wall(t_data *data, t_2float pos, bool is_player);
 void	start_game(t_data *data);
@@ -161,6 +161,5 @@ uint8_t	*texture_pixel(t_data *data, t_raywall *rays);
 void	convert_to_hex(uint32_t *texture_map, uint8_t *pixels);
 void	background(t_data *data);
 void	minimap(t_data *data);
-void	remove_empty_line(t_data *data);
 
 #endif

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:03:59 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/10 09:26:27 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/13 19:00:17 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 // Check collision with a wall
-bool is_wall(t_data *data, t_2float pos, bool is_player)
+bool	is_wall(t_data *data, t_2float pos, bool is_player)
 {
 	if (pos.x <= 0 || pos.y <= 0
 		|| pos.x >= data->map.map_size.x
@@ -23,7 +23,7 @@ bool is_wall(t_data *data, t_2float pos, bool is_player)
 	{
 		if (data->map.map[(int)pos.y][(int)pos.x] == '1')
 			return (true);
-		return (false);	
+		return (false);
 	}
 	if (data->map.map[(int)(pos.y - 0.2f)][(int)(pos.x - 0.2f)] == '1'
 		|| data->map.map[(int)(pos.y - 0.2f)][(int)(pos.x + 0.2f)] == '1'

@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/06/13 15:09:04 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/13 16:22:36 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void alloc_map(t_data *data, int i)
 		k++;
 	}
 	map_temp[k] = NULL;
-	ft_printf("oui k = %d\n", k);
+	//ft_printf("oui k = %d\n", k);
 	//free_split(data->map.map);
+	data->map.map = NULL;
 	data->map.map = map_temp;
 }
 
@@ -63,24 +64,18 @@ void	table_to_map(t_data *data)
 	while(i >= 0)
 	{
 		j = 0;
-		while(data->map.map[i][j] != '\0')
+		while(data->map.map[i][j] || data->map.map[i][j] == '\n')
 		{
-			//printf("map[%d][%d] = \'%c\'\n", i, j, data->map.map[i][j]);
-			if (data->map.map[i][j] == 'W' || data->map.map[i][j] == 'E'
-				|| data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S')
+			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' || data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
 			{
-				if (data->map.player_start != '+')
-				{
-					free_data(data);
-					exit_msg("Error\n↪\tMultiple player start\n");
-				}
-				data->map.player_start = data->map.map[i][j];
+				if (data->map.player_start == '+')
+					data->map.player_start = data->map.map[i][j];
+				else
+					exit_msg("Error\n↪\ttoo many player\n");
 				player_dir(data);
+				data->map.map[i][j] = '0';
 			}
-			else if(data->map.map[i][0] == '\0' || data->map.map[i][0] == '\n')
-				return (alloc_map(data, i - 1));
-			else if (data->map.map[i][j] != ' ' && data->map.map[i][j] != '\n'
-				&& data->map.map[i][j] != '1' && data->map.map[i][j] != '0')
+			else if(data->map.map[i][j] != ' ' && data->map.map[i][j] != '1' && data->map.map[i][j] != '0' && data->map.map[i][j] != '\n' && data->map.map[i][j] != '\0')
 				return (alloc_map(data, i - 1));
 			j++;
 		}

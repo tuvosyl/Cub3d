@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:06:15 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/13 15:04:27 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/13 16:10:52 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	parsing(t_data *data, int argc, char **argv)
 		i++;
 	}
 	if(map_close(data) == 1)
-		exit_msg("Error\n↪\tMap not closed\n");
+		exit_msg("\n");
 	find_map_size_and_player_pos(data);
 	if (data->map.player_start == '+')
 		return (ft_printf("Error\n↪\tPlayer position not found\n"), exit (1));

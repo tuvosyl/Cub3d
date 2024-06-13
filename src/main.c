@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:55:39 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/07 17:08:27 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/11 18:00:45 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv)
 
 	init_all(&data);
 	parsing(&data, argc, argv);
+	
 	load_png(&data);
 	if (DEBUG)
 		printf_debug(&data);

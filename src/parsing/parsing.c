@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:06:15 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/10 14:26:41 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/13 15:04:27 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 int all_around_0(char **map, int i, int j)
 {
 	if (i == 0 || j == 0 || i == (int)ft_strlen(map[i]) - 1 || j == (int)ft_strlen(map[i]) - 1)
-		return(printf("map not close\n"), 1);
+		return(printf("map not close or wrong character in map\n"), 1);
 	if ((map[i][j + 1] != '1' && map[i][j + 1] != '0') || (map[i][j - 1] != '1' && map[i][j - 1] != '0'))
-		return(printf("map not close\n"), 1);
+		return(printf("map not close or wrong character in map\n"), 1);
 	if ((map[i + 1][j] != '1' && map[i + 1][j] != '0') || (map[i + 1][j] != '1' && map[i + 1][j] != '0'))
-		return(printf("map not close\n"), 1);
+		return(printf("map not close or wrong character in map\n"), 1);
 	return (0);
 }
 
@@ -62,11 +62,11 @@ int map_close(t_data *data)
 		while(data->map.map[i][j])
 		{
 			if (data->map.map[i][j] != '0' && data->map.map[i][j] != '1' && data->map.map[i][j] != ' ' && data->map.map[i][j] != '\n')
-				return (printf("map[%i][%i] = \'%c\'\n", i, j, data->map.map[i][j]), 1);
+				return (1);
 			if (data->map.map[i][j] == '0')
 			{
 				if (all_around_0(data->map.map, i, j))
-					return (printf("map[%i][%i] = \'%c\'\n", i, j, data->map.map[i][j]), 1);
+					return (1);
 			}
 			j++;
 		}
@@ -91,6 +91,15 @@ void	parsing(t_data *data, int argc, char **argv)
 		return (ft_printf("Error\n↪\tFloor color not valid\n"), exit (1));
 	read_lenght(data);
 	table_to_map(data);
+	int	i;
+
+	i = 0;
+	ft_printf("\033[0;35m\nmap :\033[0m\n");
+	while (data->map.map[i])
+	{
+		ft_printf("%s", data->map.map[i]);
+		i++;
+	}
 	if(map_close(data) == 1)
 		exit_msg("Error\n↪\tMap not closed\n");
 	find_map_size_and_player_pos(data);

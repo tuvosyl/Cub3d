@@ -2,11 +2,8 @@ NO ./maps/textures/Purple_Wall.png
 SO ./maps/textures/wall.png
 WE ./maps/textures/Purple_Background.png
 EA ./maps/textures/wall.png
-
-
 F 88,88,88
 C 40,40,40
-
 
         1111111111111111111111111
         1000000000110000000000001

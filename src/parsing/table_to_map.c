@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/06/10 14:58:00 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/13 15:09:04 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,96 +23,68 @@ static void	player_dir(t_data *data)
 	else if (data->map.player_start == 'W')
 		data->player_dir = 180;
 }
-
-void	table_to_map_2(t_data *data, int k, int i)
+void alloc_map(t_data *data, int i)
 {
-	char	**map;
-	int		j;
-
+	int j;
+	int k;
+	char **map_temp;
+	
 	j = 0;
-	map = (char **)malloc(sizeof(char *) * (k - i + 2));
-	while (i <= k)
-	{
-		map[j] = ft_strdup(data->map.map[i]);
-		i++;
+	k = 0;
+	while(data->map.map[j])
 		j++;
-	}
-	map[j] = NULL;
-	free_split(data->map.map);
-	data->map.map = map;
-}
-
-void	table_to_map_3(t_data *data, t_4int i)
-{
-	while (data->map.map[i.r][i.g])
+	j--;
+	printf("\nj = %d i = %d\n", j, i);
+	if (j == i - 1)
+		exit_msg("Error\n↪\twrong character in last line\n");
+	map_temp = (char **)malloc(sizeof(char *) * (i + 1));
+	while (i <= j)
 	{
-		if (data->map.map[i.r][i.g] == '1' || data->map.map[i.r][i.g] == ' '
-			|| data->map.map[i.r][i.g] == '0'
-			|| data->map.map[i.r][i.g] == '\n')
-			i.g++;
-		else if ((data->map.map[i.r][i.g] == 'N'
-			|| data->map.map[i.r][i.g] == 'S'
-			|| data->map.map[i.r][i.g] == 'W'
-			|| data->map.map[i.r][i.g] == 'E'))
-		{
-			if (data->map.player_start != '+')
-			{
-				free_data(data);
-				exit_msg("Error\n↪\tMultiple player start\n");
-			}
-			data->map.player_start = data->map.map[i.r][i.g];
-			player_dir(data);
-			i.g++;
-		}
-		else
-		{
-			printf("test");
-			return (table_to_map_2(data, i.l, i.r + 1));
-		}
+		map_temp[k] = ft_strdup(data->map.map[i]);
+		i++;
+		k++;
 	}
+	map_temp[k] = NULL;
+	ft_printf("oui k = %d\n", k);
+	//free_split(data->map.map);
+	data->map.map = map_temp;
 }
 
 void	table_to_map(t_data *data)
 {
-	t_4int	i;
+	int i;
+	int j;
 
-	i.r = 0;
-	i.g = 0;
-	i.b = 0;
+	i = 0;
 	data->map.player_start = '+';
-	while (data->map.map[i.r] != NULL)
-		i.r++;
-	i.r -= 1;
-	i.l = i.r;
-	while (i.r != 0)
+	while(data->map.map[i])
+		i++;
+	i--;
+	while(i >= 0)
 	{
-		if (!data->map.map[i.r])
-			return (table_to_map_2(data, i.l, i.r + 1));
-		if (data->map.map[i.r][i.g] == '\n')
-			return (table_to_map_2(data, i.l, i.r + 1));
-		table_to_map_3(data, i);
-		i.g = 0;
-		if (i.b != 0)
-			break ;
-		i.r--;
+		j = 0;
+		while(data->map.map[i][j] != '\0')
+		{
+			//printf("map[%d][%d] = \'%c\'\n", i, j, data->map.map[i][j]);
+			if (data->map.map[i][j] == 'W' || data->map.map[i][j] == 'E'
+				|| data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S')
+			{
+				if (data->map.player_start != '+')
+				{
+					free_data(data);
+					exit_msg("Error\n↪\tMultiple player start\n");
+				}
+				data->map.player_start = data->map.map[i][j];
+				player_dir(data);
+			}
+			else if(data->map.map[i][0] == '\0' || data->map.map[i][0] == '\n')
+				return (alloc_map(data, i - 1));
+			else if (data->map.map[i][j] != ' ' && data->map.map[i][j] != '\n'
+				&& data->map.map[i][j] != '1' && data->map.map[i][j] != '0')
+				return (alloc_map(data, i - 1));
+			j++;
+		}
+		i--;
 	}
-	exit(1);
+	exit_msg("Error\n↪\twtf are you doing here ? there is a problem\n");
 }
-
-// void	table_to_map(t_data *data)
-// {
-// 	int i;
-// 	int j;
-
-// 	i = 0;
-// 	while(data->map.map[i])
-// 		i++;
-// 	i--;
-// 	while(i != 0)
-// 	{
-// 		j = 0;
-// 		i--;
-		
-// 	}
-// 	exit(1);
-// }

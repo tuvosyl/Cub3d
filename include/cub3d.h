@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/11 14:13:58 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:51:40 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,5 +161,6 @@ uint8_t	*texture_pixel(t_data *data, t_raywall *rays);
 void	convert_to_hex(uint32_t *texture_map, uint8_t *pixels);
 void	background(t_data *data);
 void	minimap(t_data *data);
+void	remove_empty_line(t_data *data);
 
 #endif

@@ -6,78 +6,57 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:18:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/14 16:37:05 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/17 15:59:49 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-uint8_t	*texture_pixel(t_data *data, t_raywall *rays)
+uint32_t	draw_rays_2(t_data *data, t_2int incr, t_raywall *rays, t_2int y)
 {
-	if (rays->wall_type == EAST)
-		return (data->textures.east_texture->pixels);
-	else if (rays->wall_type == WEST)
-		return (data->textures.west_texture->pixels);
-	else if (rays->wall_type == NORTH)
-		return (data->textures.north_texture->pixels);
-	else if (rays->wall_type == SOUTH)
-		return (data->textures.south_texture->pixels);
-	return (NULL);
-}
-uint32_t apply_fog(uint32_t color, float fog_factor)
-{
-    // Extract the individual color components (assuming ARGB format)
-    uint8_t a = (color >> 24) & 0xFF;
-    uint8_t r = (color >> 16) & 0xFF;
-    uint8_t g = (color >> 8) & 0xFF;
-    uint8_t b = color & 0xFF;
-    
-    // Apply the fog factor to each color component
-    r = (uint8_t)(r * fog_factor);
-    g = (uint8_t)(g * fog_factor);
-    b = (uint8_t)(b * fog_factor);
-    
-    // Recombine the components back into a single uint32_t value
-    uint32_t new_color = (a << 24) | (r << 16) | (g << 8) | b;
-    
-    return new_color;
-}
-void	draw_rays(t_data *data, t_raywall *rays)
-{
-	int			height;
+	float		fog_factor;
 	uint32_t	*texture;
 	uint32_t	color;
+
+	texture = NULL;
+	if (rays[incr.x].wall_type == EAST)
+		texture = data->textures.east_pixel;
+	else if (rays[incr.x].wall_type == WEST)
+		texture = data->textures.west_pixel;
+	else if (rays[incr.x].wall_type == NORTH)
+		texture = data->textures.north_pixel;
+	else if (rays[incr.x].wall_type == SOUTH)
+		texture = data->textures.south_pixel;
+	y.y = ((incr.y - (data->screen_size.y
+					/ 2 - y.x / 2)) * TEXTURE_SIZE) / y.x;
+	fog_factor = 1.0 - fminf(rays[incr.x].distance
+			/ MAX_DISTANCE * 15.0, 1.0);
+	color = texture[TEXTURE_SIZE * y.y
+		+ (rays[incr.x].texture_pos)];
+	color = apply_fog(color, fog_factor);
+	return (color);
+}
+
+void	draw_rays(t_data *data, t_raywall *rays)
+{
+	t_2int		y_height;
 	t_2int		incr;
-	int			texture_y;
-	float fog_factor;
 
 	incr.x = 0;
 	while (incr.x != data->screen_size.x)
 	{
-		height = (data->screen_size.y * 0.5f)
+		y_height.x = (data->screen_size.y * 0.5f)
 			/ tan(FOV * 0.5f) / rays[incr.x].distance * 5;
-		incr.y = (data->screen_size.y / 2 - height / 2);
-		while (incr.y != data->screen_size.y / 2 + height / 2)
+		incr.y = (data->screen_size.y / 2 - y_height.x / 2);
+		while (incr.y != data->screen_size.y / 2 + y_height.x / 2)
 		{
 			if (incr.y < 0 || incr.y >= data->screen_size.y)
 			{
 				incr.y++;
 				continue ;
 			}
-			if (rays[incr.x].wall_type == EAST)
-				texture = data->textures.east_pixel;
-			else if (rays[incr.x].wall_type == WEST)
-				texture = data->textures.west_pixel;
-			else if (rays[incr.x].wall_type == NORTH)
-				texture = data->textures.north_pixel;
-			else if (rays[incr.x].wall_type == SOUTH)
-				texture = data->textures.south_pixel;
-			texture_y = ((incr.y - (data->screen_size.y
-							/ 2 - height / 2)) * TEXTURE_SIZE) / height;
-			color = texture[TEXTURE_SIZE * texture_y + (rays[incr.x].texture_pos)];
-			fog_factor = 1.0 - fminf(rays[incr.x].distance / MAX_DISTANCE * 15.0, 1.0);
-			color = apply_fog(color, fog_factor);
-			mlx_put_pixel(data->camera_view, incr.x, incr.y, color);
+			mlx_put_pixel(data->camera_view, incr.x, incr.y,
+				draw_rays_2(data, incr, rays, y_height));
 			incr.y++;
 		}
 		incr.x++;

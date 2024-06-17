@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:01:00 by valentins         #+#    #+#             */
-/*   Updated: 2024/06/14 00:46:30 by val              ###   ########.fr       */
+/*   Updated: 2024/06/17 17:24:59 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,49 +69,53 @@ t_3RGB	extract_rgb(t_data *data, char *str, t_3RGB return_value)
 	int		which_value;
 	char	*temp;
 
-	i = 0;
+	i = 1;
 	which_value = 0;
 	while (str[i] && str[i] != '\n' && which_value != 3 && str[i] != '-')
 	{
-		if (str[i] == '-')
-			exit_msg(data, "Error\n↪\tRGB value is negative", 0);
 		if (ft_isdigit(str[i]) == 1)
 		{
 			temp = extract_rgb_2(str, &i, &which_value);
 			if (which_value == 1)
-				return_value.r = tcheck_max_rgb_value(data, temp);
+				return_value.r = tcheck_max_rgb_value(data, temp, str);
 			else if (which_value == 2)
-				return_value.g = tcheck_max_rgb_value(data, temp);
+				return_value.g = tcheck_max_rgb_value(data, temp, str);
 			else if (which_value == 3)
-				return_value.b = tcheck_max_rgb_value(data, temp);
+				return_value.b = tcheck_max_rgb_value(data, temp, str);
 			free(temp);
 		}
-		else
+		else if (str[i] == ' ' || str[i] == ',')
 			i++;
+		else
+			exit_msg(data, "Error\n↪\tWrong character in RGB values", 1);
 	}
 	return (return_value);
 }
 
 void	extract_value_2(t_data *data, char *str)
 {
-	int	i;
-
-	i = 0;
-	(void)i;
 	if (str[0] == 'N' && str[1] == 'O')
-		data->texture_path.north_texture = extract_texture_path(str);
+	{
+		if (data->texture_path.north_texture == NULL)
+			data->texture_path.north_texture = extract_texture_path(str);
+		else
+			exit_msg(data, "double north texture", 1);
+	}
 	if (str[0] == 'S' && str[1] == 'O')
-		data->texture_path.south_texture = extract_texture_path(str);
+	{
+		if (data->texture_path.south_texture == NULL)
+			data->texture_path.south_texture = extract_texture_path(str);
+		else
+			exit_msg(data, "double south texture", 1);
+	}
 	if (str[0] == 'W' && str[1] == 'E')
-		data->texture_path.west_texture = extract_texture_path(str);
-	if (str[0] == 'E' && str[1] == 'A')
-		data->texture_path.east_texture = extract_texture_path(str);
-	if (str[0] == 'F')
-		data->textures.floor_color
-			= extract_rgb(data, str, data->textures.floor_color);
-	if (str[0] == 'C')
-		data->textures.ceiling_color = extract_rgb(data, str,
-				data->textures.ceiling_color);
+	{
+		if (data->texture_path.west_texture == NULL)
+			data->texture_path.west_texture = extract_texture_path(str);
+		else
+			exit_msg(data, "double west texture", 1);
+	}
+	extract_value_2_2(data, str);
 }
 
 int	extract_value(t_data *data)

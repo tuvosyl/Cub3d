@@ -3,22 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:24:38 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/14 00:43:32 by val              ###   ########.fr       */
+/*   Updated: 2024/06/14 19:12:15 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	tcheck_max_rgb_value(t_data *data, char *temp)
+int	tcheck_max_rgb_value(t_data *data, char *temp, char *str)
 {
 	int	return_value;
 
 	return_value = ft_atoi(temp);
 	if (return_value > 255 || return_value < 0)
+	{
+		free(temp);
+		free(str);
+		while (1)
+		{
+			str = get_next_line(data->map.fd);
+			if (str == NULL)
+				break ;
+			free(str);
+		}
 		exit_msg(data, "Error\n↪\tRGB value is not between 0 and 255", 1);
+	}
 	return (return_value);
 }
 

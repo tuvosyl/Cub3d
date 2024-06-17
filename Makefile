@@ -4,7 +4,7 @@ CC 			= clang
 RM			= rm -f
 
 # Compilation flags
-CFLAGS 		= -gdwarf-4 -Wall -Wextra -Werror
+CFLAGS 		= -gdwarf-4 -Wall -Wextra -Werror -O3
 LIBFTFLAGS	= -L./lib/libft -lft -fPIE
 MLXFLAGS	= ./lib/MLX42/build/libmlx42.a -I./MLX42/include -ldl -lglfw -pthread -lm
 

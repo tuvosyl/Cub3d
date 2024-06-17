@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:42:14 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/13 19:11:59 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/14 18:43:47 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,11 @@ void	minimap(t_data *data)
 	t_2int	incr;
 
 	incr = (t_2int){0, 0};
-	while (incr.y < data->map.map_size.y)
+	incr.y = 0;
+	while (data->map.map[incr.y])
 	{
 		incr.x = 0;
-		while (incr.x < data->map.map_size.x)
+		while (data->map.map[incr.y][incr.x])
 		{
 			if (data->map.map[incr.y][incr.x] == '1')
 				put_rectangle(data->camera_view,

@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:29:14 by val               #+#    #+#             */
-/*   Updated: 2024/06/13 18:58:19 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/17 16:12:22 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ int	table_to_map_3(t_data *data, t_4int i)
 		else if (data->map.map[i.r][i.g] != ' '
 			&& data->map.map[i.r][i.g] != '1' && data->map.map[i.r][i.g] != '0'
 			&& data->map.map[i.r][i.g] != '\n')
-		{
-			printf("Error\n↪\tmap[%d][%d] = \'%c\'\n",
-				i.r, i.g, data->map.map[i.r][i.g]);
 			return (table_to_map_2(data, i.l, i.r + 1), 1);
-		}
 		i.g++;
 	}
 	return (0);

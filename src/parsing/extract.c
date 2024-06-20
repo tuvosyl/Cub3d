@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:01:00 by valentins         #+#    #+#             */
-/*   Updated: 2024/06/20 11:09:40 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/20 11:12:16 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_3RGB	extract_rgb(t_data *data, char *str, t_3RGB return_value)
 		else if (str[i] == ' ' || str[i] == ',')
 			i++;
 		else
-			exit_extract_rgb(data, str, "rbg error");
+			exit_extract_rgb(data, str, "Error\n↪\trbg error");
 	}
 	return (return_value);
 }
@@ -99,21 +99,21 @@ void	extract_value_2(t_data *data, char *str)
 		if (data->texture_path.north_texture == NULL)
 			data->texture_path.north_texture = extract_texture_path(str);
 		else
-			exit_extract_rgb(data, str, "double north");
+			exit_extract_rgb(data, str, "Error\n↪\tdouble north");
 	}
 	if (str[0] == 'S' && str[1] == 'O')
 	{
 		if (data->texture_path.south_texture == NULL)
 			data->texture_path.south_texture = extract_texture_path(str);
 		else
-			exit_extract_rgb(data, str, "double south");
+			exit_extract_rgb(data, str, "Error\n↪\tdouble south");
 	}
 	if (str[0] == 'W' && str[1] == 'E')
 	{
 		if (data->texture_path.west_texture == NULL)
 			data->texture_path.west_texture = extract_texture_path(str);
 		else
-			exit_extract_rgb(data, str, "double west");
+			exit_extract_rgb(data, str, "Error\n↪\tdouble west");
 	}
 	extract_value_2_2(data, str);
 }

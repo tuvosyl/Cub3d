@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:01:23 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/20 10:48:30 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/20 11:10:40 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	extract_value_2_2(t_data *data, char *str)
 		if (data->texture_path.east_texture == NULL)
 			data->texture_path.east_texture = extract_texture_path(str);
 		else
-			exit_msg(data, "double east texture", 1);
+			exit_extract_rgb(data, str, "double east");
 	}
 	if (str[0] == 'F')
 	{
@@ -29,7 +29,7 @@ void	extract_value_2_2(t_data *data, char *str)
 			data->textures.floor_color
 				= extract_rgb(data, str, data->textures.floor_color);
 		else
-			exit_msg(data, "double definition of floor color", 1);
+			exit_extract_rgb(data, str, "double definition of floor color");
 	}
 	if (str[0] == 'C')
 	{
@@ -37,11 +37,11 @@ void	extract_value_2_2(t_data *data, char *str)
 			data->textures.ceiling_color = extract_rgb(data, str,
 					data->textures.ceiling_color);
 		else
-			exit_msg(data, "double definition of ceiling color", 1);
+			exit_extract_rgb(data, str, "double definition of ceiling color");
 	}
 }
 
-void	exit_extract_rgb(t_data *data, char *str)
+void	exit_extract_rgb(t_data *data, char *str , char *error_msg)
 {
 	free(str);
 	while (1)
@@ -51,5 +51,5 @@ void	exit_extract_rgb(t_data *data, char *str)
 			break ;
 		free(str);
 	}
-	exit_msg(data, "Error\n↪\tWrong character in RGB values", 1);
+	exit_msg(data, ft_strjoin("Error\n↪\t", error_msg), 1);
 }

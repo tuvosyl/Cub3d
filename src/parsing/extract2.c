@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:01:23 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/17 18:01:49 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/20 10:48:30 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,17 @@ void	extract_value_2_2(t_data *data, char *str)
 		else
 			exit_msg(data, "double definition of ceiling color", 1);
 	}
+}
+
+void	exit_extract_rgb(t_data *data, char *str)
+{
+	free(str);
+	while (1)
+	{
+		str = get_next_line(data->map.fd);
+		if (str == NULL)
+			break ;
+		free(str);
+	}
+	exit_msg(data, "Error\n↪\tWrong character in RGB values", 1);
 }

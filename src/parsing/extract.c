@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:01:00 by valentins         #+#    #+#             */
-/*   Updated: 2024/06/17 17:24:59 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/20 10:48:15 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_3RGB	extract_rgb(t_data *data, char *str, t_3RGB return_value)
 		else if (str[i] == ' ' || str[i] == ',')
 			i++;
 		else
-			exit_msg(data, "Error\n↪\tWrong character in RGB values", 1);
+			exit_extract_rgb(data, str);
 	}
 	return (return_value);
 }

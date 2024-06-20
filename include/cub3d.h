@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/20 11:08:49 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/20 11:17:03 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ typedef struct s_data
 
 void		parsing(t_data *data, int argc, char **argv);
 int			tcheck_max_rgb_value(t_data *data, char *temp, char *str);
-void		print_map(t_data *data);
 void		printf_debug(t_data *data);
 void		read_lenght(t_data *data);
 void		table_to_map(t_data *data);
@@ -165,5 +164,4 @@ uint32_t	apply_fog(uint32_t color, float fog_factor);
 void		extract_value_2_2(t_data *data, char *str);
 char		*extract_texture_path(char *str);
 t_3RGB		extract_rgb(t_data *data, char *str, t_3RGB return_value);
-void		exit_extract_rgb(t_data *data, char *str , char *error_msg);
 #endif

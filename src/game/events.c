@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:45:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/17 16:24:14 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/20 10:30:25 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,27 @@ static bool	camera_controls(t_data *data)
 {
 	t_2int	mouse_pos;
 
-	mouse_pos.x = 0;
-	mouse_pos.y = 0;
-	mlx_get_mouse_pos(data->mlx, &mouse_pos.x, &mouse_pos.y);
-	if (mouse_pos.x > data->screen_size.x / 2 + 10)
-		data->player_dir += (mouse_pos.x - data->screen_size.x / 2) / 10;
-	else if (mouse_pos.x < data->screen_size.x / 2 - 10)
-		data->player_dir -= (data->screen_size.x / 2 - mouse_pos.x) / 10;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+	if (BONUS)
+	{
+		mouse_pos.x = 0;
+		mouse_pos.y = 0;
+		mlx_get_mouse_pos(data->mlx, &mouse_pos.x, &mouse_pos.y);
+		if (mouse_pos.x > data->screen_size.x / 2 + 10)
+			data->player_dir += (mouse_pos.x - data->screen_size.x / 2) / 10;
+		else if (mouse_pos.x < data->screen_size.x / 2 - 10)
+			data->player_dir -= (data->screen_size.x / 2 - mouse_pos.x) / 10;
+		else
+			return (false);
+		mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2,
+			data->screen_size.y / 2);
+		return (true);
+	}
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		data->player_dir -= PLAYER_ROTATION_SPEED;
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		data->player_dir += PLAYER_ROTATION_SPEED ;
 	else
 		return (false);
-	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2,
-		data->screen_size.y / 2);
 	data->player_dir = round_deg(data->player_dir);
 	return (true);
 }

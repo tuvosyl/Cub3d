@@ -50,6 +50,7 @@ LIBFT:
 MLX42:
 	@if [ ! -f $(MLX42EXEC) ]; \
 	then printf "\033[1;35m\n\t| Starting MLX42 compilation\n\e[0m" \
+	&& git clone https://github.com/codam-coding-college/MLX42.git ./lib/MLX42\
 	&& cmake -S ./lib/MLX42 -B ./lib/MLX42/build > /dev/null \
 	&& cmake --build ./lib/MLX42/build -j4 > /dev/null \
 	&& make -s -C ./lib/MLX42/build > /dev/null \
@@ -63,7 +64,7 @@ clean:
 fclean: clean
 	@$(RM) $(LIBFTEXEC)
 	@printf "\033[1;31m- [LIBFT] Static lib deleted\n\033[0m"
-	@$(RM) $(MLX42EXEC)
+	@$(RM) -r ./lib/MLX42
 	@printf "\033[1;31m- [MLX42] Static lib deleted\n\033[0m"
 	@$(RM) $(NAME)
 	@printf "\033[1;31m- Executable file deleted\n\033[0m"

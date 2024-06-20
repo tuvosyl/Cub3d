@@ -50,7 +50,7 @@ LIBFT:
 MLX42:
 	@if [ ! -f $(MLX42EXEC) ]; \
 	then printf "\033[1;35m\n\t| Starting MLX42 compilation\n\e[0m" \
-	&& git clone https://github.com/codam-coding-college/MLX42.git ./lib/MLX42\
+	&& git clone --quiet https://github.com/codam-coding-college/MLX42.git ./lib/MLX42\
 	&& cmake -S ./lib/MLX42 -B ./lib/MLX42/build > /dev/null \
 	&& cmake --build ./lib/MLX42/build -j4 > /dev/null \
 	&& make -s -C ./lib/MLX42/build > /dev/null \

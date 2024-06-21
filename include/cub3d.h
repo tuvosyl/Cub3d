@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:44:25 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/20 11:17:03 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:34:17 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,4 +164,5 @@ uint32_t	apply_fog(uint32_t color, float fog_factor);
 void		extract_value_2_2(t_data *data, char *str);
 char		*extract_texture_path(char *str);
 t_3RGB		extract_rgb(t_data *data, char *str, t_3RGB return_value);
+void		exit_extract_rgb(t_data *data, char *str, char *error_msg);
 #endif

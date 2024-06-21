@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:22:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/17 16:24:21 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/21 10:23:23 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ void	start_game(t_data *data)
 	data->mlx = mlx_init(data->screen_size.x,
 			data->screen_size.y, "Cub3D", true);
 	if (!data->mlx)
+	{
+		delete_texture(data);
+		printf("Critical Error :\n\tmlx_init failed\n");
 		return ;
+	}
 	get_texture_pixel(data);
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(data->mlx, data->screen_size.x / 2,

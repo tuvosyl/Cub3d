@@ -6,7 +6,7 @@
 /*   By: vsoltys <vsoltys@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:11:49 by vsoltys           #+#    #+#             */
-/*   Updated: 2024/06/25 10:38:24 by vsoltys          ###   ########.fr       */
+/*   Updated: 2024/06/25 10:50:30 by vsoltys          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void	add_n(t_data *data)
 	char	**temp;
 
 	i = 0;
+	if (!data->map.map)
+		exit_msg(data,
+			"Error\n↪\t empty file after reading(arthur i hate you)", 1);
 	while (data->map.map[i])
 		i++;
 	temp = (char **)malloc(sizeof(char *) * (i + 1));

@@ -120,10 +120,8 @@ void	extract_value_2(t_data *data, char *str)
 
 int	extract_value(t_data *data)
 {
-	int		i;
 	char	*str;
 
-	i = 0;
 	tcheck_file(data);
 	while (1)
 	{
@@ -132,7 +130,6 @@ int	extract_value(t_data *data)
 			break ;
 		extract_value_2(data, str);
 		free(str);
-		i++;
 	}
 	close(data->map.fd);
 	extract_value_condition(data);
